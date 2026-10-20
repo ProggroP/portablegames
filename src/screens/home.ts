@@ -114,6 +114,9 @@ export function homeScreen(root: HTMLElement): void {
       h('section', { class: 'section' },
         h('div', { class: 'section__head' }, h('h2', { class: 'subtitle' }, 'Spiele'), count),
         grid
+      ),
+      h('footer', { class: 'home-footer muted small' },
+        h('a', { href: 'lizenzen.txt', target: '_blank', rel: 'noopener' }, 'Lizenzen')
       )
     )
   );

@@ -1964,3 +1964,15 @@ a.game-card:hover {
   background: var(--bg);
   cursor: pointer;
 }
+
+.home-footer {
+  margin-top: 8px;
+  text-align: center;
+}
+.home-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--muted);
+}

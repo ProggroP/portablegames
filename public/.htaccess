@@ -5,6 +5,7 @@ AddType application/manifest+json .webmanifest
 AddType text/javascript .js
 AddType image/svg+xml .svg
 AddType font/woff2 .woff2
+AddCharset utf-8 .txt .html .js .css .webmanifest
 
 <IfModule mod_headers.c>
   # Service Worker, Startseite und Manifest immer neu prüfen, damit Updates ankommen.

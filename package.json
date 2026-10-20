@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "icons": "python3 scripts/make_icons.py",
-    "check:layout": "node scripts/check-layout.cjs http://localhost:4173"
+    "check:layout": "node scripts/check-layout.cjs http://localhost:4173",
+    "licenses": "python3 scripts/write_licenses.py"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

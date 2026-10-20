@@ -2,7 +2,7 @@
 
 Klassische Spiele für ein Smartphone, allein gegen den Computer oder zu zweit an einem Gerät, gegenüber oder nebeneinander. Die App ist eine PWA und funktioniert nach der Installation auch offline.
 
-Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon**, **Air-Hockey**, **Gomoku**, **Fallreihe**, **Paarweise**, **Fünf Würfel**, **Solitär**, **Feldräumer** und **Neunerfeld**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
+Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon**, **Air-Hockey**, **Gomoku**, **Fallreihe**, **Paarweise**, **Fünf Würfel**, **Solitär**, **Feldräumer**, **Neunerfeld** und **Schach**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
 
 ## Entwickeln
 
@@ -13,6 +13,7 @@ npm test         # Tests der Spiellogik
 npm run build    # Typprüfung und Produktions-Build nach dist/
 npm run preview  # Build lokal ansehen
 npm run icons    # App-Icons neu erzeugen (Python mit Pillow)
+npm run licenses # public/lizenzen.txt neu schreiben, nach dem Hinzufügen von Abhängigkeiten
 npm run check:layout  # bei laufendem preview: alle Bedienelemente auf kleinen Handys erreichbar? (braucht Playwright)
 ```
 
@@ -65,4 +66,4 @@ Sobald alle vier gesetzt sind, lädt jeder Push auf `main` die neue Version per 
 
 ## Lizenz
 
-MIT
+MIT. Verwendet [chess.js](https://github.com/jhlywa/chess.js) (BSD-2-Clause) für die Schachregeln und die Schrift Fredoka (SIL Open Font License) über @fontsource.

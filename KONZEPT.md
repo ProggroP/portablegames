@@ -37,7 +37,7 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Reversi | | Hoch | Hoch | spielbar |
 | Mühle | | Hoch | Hoch | spielbar |
 | Dame | | Hoch | Hoch | spielbar |
-| Schach | | Hoch | Hoch | geplant, Figuren gegenüber zum jeweiligen Spieler gedreht |
+| Schach | | Hoch | Hoch | spielbar, Figuren gegenüber zum jeweiligen Spieler gedreht |
 | Backgammon | | Quer | Quer | spielbar, ohne Verdopplungswürfel |
 | Mancala | Kalaha | Quer | Quer | spielbar |
 | Gomoku | | Hoch | Hoch | spielbar, 13×13 mit Bestätigungs-Tipp |
@@ -63,6 +63,7 @@ Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete d
 - **Solitär:** Klondike-Regeln. Leicht und Mittel ziehen eine Karte nach, Schwer drei. Der Stapel darf beliebig oft durchgespielt werden. Nicht jede Verteilung ist lösbar.
 - **Feldräumer:** Der erste Tipp ist immer sicher. Leicht 8×10 mit 10 Minen, Mittel 9×12 mit 18, Schwer 9×14 mit 28.
 - **Neunerfeld:** Jedes Rätsel hat genau eine Lösung. Vorgegeben sind etwa 40 (Leicht), 32 (Mittel) oder 26 Zahlen (Schwer). Doppelte Zahlen werden angezeigt, falsche, aber regelkonforme Zahlen nicht.
+- **Schach:** FIDE-Regeln mit Rochade, en passant und Umwandlung. Remis bei Patt, dreifacher Stellungswiederholung, ungenügendem Material und nach 50 Zügen ohne Bauernzug und Schlagen. Wer beginnt, spielt Weiß.
 - **Backgammon:** Standardregeln ohne Verdopplungswürfel und ohne Gammon-Wertung. Beide Würfel müssen genutzt werden, wenn es geht, sonst der höhere. Wer beginnt, wechselt von Spiel zu Spiel, es gibt keinen Eröffnungswurf.
 
 ## Namen
@@ -100,9 +101,9 @@ Jedes Spiel hat eine Kurzanleitung in `src/games/howto.ts`. Der erste Punkt nenn
 2. Mühle, Dame, Käsekästchen: weitere quadratische Bretter. **(erledigt)**
 3. Mancala und Backgammon: erste Spiele im Querformat. **(erledigt)**
 4. Air-Hockey: erstes Echtzeitspiel. **(erledigt)**
-5. Die übrigen Spiele.
+5. Die übrigen Spiele. **(erledigt)**
 
 ## Offene Punkte
 
 - Auf dem iPhone kann eine Web-App die Bildschirmausrichtung nicht sperren. Bei flach liegendem Handy hilft die Ausrichtungssperre im Kontrollzentrum. Die App dreht zwar gegen, ein Hinweis beim ersten Start wäre trotzdem sinnvoll.
-- Schach braucht einen guten Computergegner. Stockfish steht unter GPL und passt nicht zur MIT-Lizenz.
+- Schach: Die Regeln prüft chess.js (BSD-2-Clause). Der Computergegner ist eine eigene Engine (`src/games/schach/engine.ts`) mit eigenem Zuggenerator, geprüft per Perft gegen Referenzwerte und gegen chess.js. Stockfish (GPL, rund 6 MB) wurde bewusst nicht verwendet. Wer einen sehr starken Gegner will, könnte es später als optionalen Download nachrüsten, dann müsste die Lizenz auf GPL wechseln.
