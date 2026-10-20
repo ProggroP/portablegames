@@ -2,7 +2,7 @@
 
 Klassische Spiele für ein Smartphone, allein gegen den Computer oder zu zweit an einem Gerät, gegenüber oder nebeneinander. Die App ist eine PWA und funktioniert nach der Installation auch offline.
 
-Spielbar sind bisher **Tic-Tac-Toe** und **Reversi**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
+Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame** und **Käsekästchen**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
 
 ## Entwickeln
 
@@ -21,7 +21,7 @@ Zum Testen auf dem Handy im selben WLAN: `npm run dev -- --host` und die angezei
 
 ```
 src/
-  core/          Typen, Drehung der Spielbühne, Einstellungen, Hilfsfunktionen
+  core/          Typen, Drehung der Spielbühne, Einstellungen, Suche für Computergegner
   screens/       Spieleauswahl, Spielaufbau, Spielbildschirm
   games/
     registry.ts  Liste aller Spiele mit Sitzordnungen und Format

@@ -74,7 +74,8 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
         }
         pill.textContent = text;
         pill.hidden = !text;
-        note.textContent = st.message ?? '';
+        const hint = active && !p.isComputer ? st.hint : undefined;
+        note.textContent = [st.message, hint].filter(Boolean).join(' ');
       }
     };
   }
@@ -130,7 +131,9 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   function report(st: GameStatus): void {
     status = st;
     huds.forEach((hud) => hud.update(st));
-    message.textContent = st.finished ? resultText(st) : st.message ?? '';
+    const humanTurn = st.current !== null && !players[st.current].isComputer;
+    const parts = st.finished ? [resultText(st), st.message] : [st.message, humanTurn ? st.hint : undefined];
+    message.textContent = parts.filter(Boolean).join(' ');
     againButtons.forEach((b) => (b.hidden = !st.finished));
   }
 

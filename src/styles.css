@@ -586,3 +586,242 @@ a.game-card:hover {
     transition: none;
   }
 }
+
+/* Mühle */
+.mill {
+  padding: 6%;
+  border-radius: 20px;
+  background: var(--surface);
+}
+.mill__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.mill-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.mill-lines path {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 0.06;
+  stroke-linejoin: round;
+}
+.mill-point {
+  position: absolute;
+  width: 14%;
+  height: 14%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.mill-point::before {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.mill-point:disabled {
+  cursor: default;
+}
+.mill-stone,
+.mill-hint {
+  position: relative;
+  border-radius: 50%;
+}
+.mill-stone {
+  width: 76%;
+  height: 76%;
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 25%);
+}
+.mill-hint {
+  width: 34%;
+  height: 34%;
+  opacity: 0.7;
+}
+.mill-point.is-last .mill-stone {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+.mill-point.is-selected .mill-stone {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+.mill-point.is-removable .mill-stone {
+  outline: 3px dashed var(--pc);
+  outline-offset: 3px;
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.88);
+  }
+}
+
+/* Dame */
+.dm {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border: 4px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.dm-cell {
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.dm-cell:disabled {
+  cursor: default;
+}
+.dm-light {
+  background: #3a3e4f;
+}
+.dm-dark {
+  background: var(--surface);
+}
+.dm-cell.is-last {
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 22%);
+}
+.dm-stone {
+  position: relative;
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 25%);
+}
+/* Dame: innerer Ring, von allen Seiten gleich lesbar */
+.dm-stone.is-king::after {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 3px solid rgb(18 19 26 / 75%);
+}
+.dm-hint {
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.dm-cell.is-selected .dm-stone {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+.dm-cell.is-must .dm-stone {
+  outline: 2px dashed var(--pc);
+  outline-offset: 2px;
+}
+
+/* Käsekästchen */
+.kaes {
+  padding: 6%;
+  border-radius: 20px;
+  background: var(--surface);
+}
+.kaes__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.kaes-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+.kaes-mark {
+  width: 24%;
+  height: 24%;
+  border-radius: 50%;
+}
+.kaes-mark--p2 {
+  border-radius: 3px;
+}
+.kaes-line {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.kaes-line:disabled {
+  cursor: default;
+}
+.kaes-line--h {
+  width: calc(var(--cell) * 0.8);
+  height: calc(var(--cell) * 0.5);
+}
+.kaes-line--v {
+  width: calc(var(--cell) * 0.5);
+  height: calc(var(--cell) * 0.8);
+}
+.kaes-line__ink {
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: var(--line);
+  transition: background-color 0.15s ease;
+}
+.kaes-line--h .kaes-line__ink {
+  width: 125%;
+  height: 6px;
+}
+.kaes-line--v .kaes-line__ink {
+  width: 6px;
+  height: 125%;
+}
+.kaes-line:not(:disabled):active .kaes-line__ink,
+.kaes-line:not(:disabled):hover .kaes-line__ink {
+  background: var(--pc);
+}
+.kaes-line.is-drawn .kaes-line__ink {
+  background: var(--text-2);
+}
+.kaes-line.is-last .kaes-line__ink {
+  background: var(--text);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 25%);
+}
+.kaes-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mill-point.is-removable .mill-stone {
+    animation: none;
+  }
+  .kaes-box,
+  .kaes-line__ink {
+    transition: none;
+  }
+}

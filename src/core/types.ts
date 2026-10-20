@@ -17,8 +17,10 @@ export interface GameStatus {
   /** Wer gerade am Zug ist, null wenn das Spiel vorbei ist. */
   current: PlayerIndex | null;
   scores?: [number, number];
-  /** Kurzer Hinweis, zum Beispiel wenn jemand aussetzen muss. */
+  /** Kurze Meldung für beide, zum Beispiel wenn jemand aussetzen muss. */
   message?: string;
+  /** Anleitung nur für den Spieler am Zug, zum Beispiel „Setze einen Stein“. */
+  hint?: string;
   /** Gesetzt, sobald das Spiel vorbei ist. winner null bedeutet unentschieden. */
   finished?: { winner: PlayerIndex | null };
 }

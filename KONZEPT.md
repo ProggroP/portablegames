@@ -35,13 +35,13 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 |---|---|---|---|---|
 | Tic-Tac-Toe | | Hoch | Hoch | spielbar |
 | Reversi | | Hoch | Hoch | spielbar |
-| Mühle | | Hoch | Hoch | geplant |
-| Dame | | Hoch | Hoch | geplant |
+| Mühle | | Hoch | Hoch | spielbar |
+| Dame | | Hoch | Hoch | spielbar |
 | Schach | | Hoch | Hoch | geplant, Figuren gegenüber zum jeweiligen Spieler gedreht |
 | Backgammon | | Quer | Quer | geplant |
 | Mancala | Kalaha | Quer | Quer | geplant |
 | Gomoku | | Hoch | Hoch | geplant, 13×13 oder Bestätigungs-Tipp |
-| Käsekästchen | | Hoch | Hoch | geplant |
+| Käsekästchen | | Hoch | Hoch | spielbar, 5×5 Kästchen |
 | Air-Hockey | | Hoch | Quer | geplant, Echtzeit mit Multitouch |
 | Paarweise | Memory | Hoch | Hoch | geplant, Motive ohne Oben und Unten |
 | Fünf Würfel | Kniffel | Hoch | Hoch | geplant, gegenüber mit eigenem Block pro Spieler |
@@ -49,6 +49,14 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Solitär | Klondike | | | geplant, nur allein |
 | Feldräumer | Minesweeper | | | geplant, nur allein |
 | Neunerfeld | Sudoku | | | geplant, nur allein |
+
+## Regelvarianten
+
+Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete deutsche Hausregeln:
+
+- **Mühle:** Wer eine Mühle schließt, nimmt einen gegnerischen Stein, aber keinen aus einer geschlossenen Mühle, außer der Gegner hat nur solche. Wer nur noch drei Steine hat, darf springen. Verloren hat, wer nur noch zwei Steine hat oder nicht mehr ziehen kann. Nach 50 Zügen ohne Mühle endet das Spiel unentschieden.
+- **Dame:** Gespielt wird auf den dunklen Feldern. Es herrscht Schlagzwang, Mehrfachsprünge werden zu Ende geführt. Einfache Steine ziehen und schlagen nur vorwärts. Die Dame zieht und schlägt beliebig weit, vorwärts und rückwärts. Wer die letzte Reihe erreicht, bekommt eine Dame, der Zug endet dort. Nach 50 Damenzügen ohne Schlagen endet das Spiel unentschieden.
+- **Käsekästchen:** Wer ein Kästchen schließt, bekommt es und ist noch einmal dran.
 
 ## Namen
 
@@ -78,7 +86,7 @@ Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine
 ## Reihenfolge
 
 1. Grundgerüst mit Sitzordnungen, Drehung und PWA, dazu Tic-Tac-Toe und Reversi. **(erledigt)**
-2. Mühle, Dame, Käsekästchen: weitere quadratische Bretter.
+2. Mühle, Dame, Käsekästchen: weitere quadratische Bretter. **(erledigt)**
 3. Mancala und Backgammon: erste Spiele im Querformat.
 4. Air-Hockey: erstes Echtzeitspiel.
 5. Die übrigen Spiele.

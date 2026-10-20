@@ -1,4 +1,7 @@
 import type { GameDef } from '../core/types';
+import { createDame } from './dame/view';
+import { createKaesekaestchen } from './kaesekaestchen/view';
+import { createMuehle } from './muehle/view';
 import { createReversi } from './reversi/view';
 import { createTicTacToe } from './tictactoe/view';
 
@@ -8,15 +11,15 @@ const BOTH_LANDSCAPE = { gegenueber: 'landscape', nebeneinander: 'landscape', al
 export const GAMES: GameDef[] = [
   { id: 'tictactoe', name: 'Tic-Tac-Toe', kind: 'Drei in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BO__B_O_B', create: createTicTacToe },
   { id: 'reversi', name: 'Reversi', kind: 'Steine umdrehen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BOBOBOBOB', create: createReversi },
+  { id: 'muehle', name: 'Mühle', kind: 'Dreierreihen bilden', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BWBW_WOWO', create: createMuehle },
+  { id: 'dame', name: 'Dame', kind: 'Diagonal ziehen und schlagen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B_B_B_O_O', create: createDame },
+  { id: 'kaesekaestchen', name: 'Käsekästchen', kind: 'Linien ziehen, Kästchen schließen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BBO_BOWWO', create: createKaesekaestchen },
 
   // Geplant, noch nicht spielbar
-  { id: 'muehle', name: 'Mühle', kind: 'Dreierreihen bilden', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BWBW_WOWO' },
-  { id: 'dame', name: 'Dame', kind: 'Diagonal ziehen und schlagen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B_B_B_O_O' },
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
   { id: 'backgammon', name: 'Backgammon', kind: 'Würfeln und heimziehen', seating: BOTH_LANDSCAPE, aspect: 2, icon: 'B_OB_OB_O' },
   { id: 'mancala', name: 'Mancala', kind: 'Bohnen säen und ernten', seating: BOTH_LANDSCAPE, aspect: 2.6, icon: 'OOO___BBB' },
   { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B' },
-  { id: 'kaesekaestchen', name: 'Käsekästchen', kind: 'Linien ziehen, Kästchen schließen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BBO_BOWWO' },
   { id: 'airhockey', name: 'Air-Hockey', kind: 'Puck ins Tor schießen', seating: { gegenueber: 'portrait', nebeneinander: 'landscape' }, aspect: 0.6, icon: '_O__W__B_' },
   { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 0.7, icon: 'B_B_O_O_W' },
   { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.6, icon: 'W_W_W_W_W' },
