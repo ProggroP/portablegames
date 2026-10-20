@@ -59,7 +59,7 @@ Unter **Settings › Secrets and variables › Actions** eintragen:
 | Secret | `FTP_PASSWORD` | FTP-Passwort |
 | Variable | `FTP_DIR` | Zielordner mit `/` am Ende, zum Beispiel `/public_html/spiele/` |
 
-Sobald alle vier gesetzt sind, lädt jeder Push auf `main` die neue Version per FTPS hoch. Hochgeladen werden nur geänderte Dateien. Gelöscht wird nur, was die Veröffentlichung selbst hochgeladen hat.
+Sobald alle vier gesetzt sind, lädt jeder Push auf `main` die neue Version per FTPS hoch (`scripts/deploy-ftp.sh` mit lftp). Hochgeladen werden nur geänderte Dateien. Gelöscht werden nur veraltete Dateien im Unterordner `assets/`, alles andere im Zielordner bleibt.
 
 ## Lizenz
 

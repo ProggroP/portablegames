@@ -16,8 +16,3 @@ AddType font/woff2 .woff2
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 </IfModule>
-
-# Interne Datei der automatischen Veröffentlichung, nicht öffentlich abrufbar.
-<Files ".ftp-deploy-sync-state.json">
-  Require all denied
-</Files>
