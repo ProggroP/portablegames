@@ -7,6 +7,7 @@ import { keepAwake } from '../core/wakeLock';
 
 // Platz, der neben dem Brett mindestens für die Anzeigen bleiben muss (in px).
 const HUD_MIN = { portrait: 150, landscape: 60 };
+const HUD_COMPACT = 64;
 const BAR_H = 56;
 const ROW_H = { portrait: 80, landscape: 64 };
 const MSG_H = 64;
@@ -114,6 +115,9 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     h('button', { class: 'icon-btn', type: 'button', 'aria-label': label, onclick }, icon(name, 20));
 
   const againButtons: HTMLButtonElement[] = [];
+  // Am Spielende ersetzt „Nochmal“ den Neustart-Knopf, damit die Anzeige nicht überläuft.
+  const restartFacing = iconButton('restart', 'Neues Spiel', restart);
+  const compact = facing && !!def.compactHud;
 
   // Kurzanleitung als Fenster auf der Bühne. Gegenüber lässt es sich für den anderen Spieler umdrehen.
   const rulesCard = h('div', { class: 'rules-card', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'rules-title' },
@@ -144,7 +148,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     huds[0].actions.append(
       bottom,
       iconButton('help', 'Kurzanleitung', () => showRules(true)),
-      iconButton('restart', 'Neues Spiel', restart),
+      restartFacing,
       iconButton('close', 'Spiel beenden', exit)
     );
     stage.append(huds[1].el, boardWrap, huds[0].el);
@@ -176,6 +180,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     const parts = st.finished ? [resultText(st), st.message] : [st.message, humanTurn ? st.hint : undefined];
     message.textContent = parts.filter(Boolean).join(' ');
     againButtons.forEach((b) => (b.hidden = !st.finished));
+    restartFacing.hidden = !!st.finished;
   }
 
   function startGame(): void {
@@ -199,10 +204,11 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
 
     const shape = g.height >= g.width ? 'portrait' : 'landscape';
     stage.classList.toggle('is-landscape', shape === 'landscape');
+    stage.classList.toggle('is-compact', compact);
 
     // Nebeneinander im Querformat stehen Leiste und Anzeigen links neben dem Brett.
     const sidePanel = !facing && shape === 'landscape';
-    const reservedH = facing ? 2 * HUD_MIN[shape] : sidePanel ? 0 : BAR_H + (soloOnly ? 0 : ROW_H[shape]) + MSG_H;
+    const reservedH = facing ? 2 * (compact ? HUD_COMPACT : HUD_MIN[shape]) : sidePanel ? 0 : BAR_H + (soloOnly ? 0 : ROW_H[shape]) + MSG_H;
     const availW = g.width - (sidePanel ? SIDE_W + 3 * PAD : 2 * PAD);
     const availH = g.height - reservedH - 2 * PAD;
     const [bw, bh] = fitBoard(availW, availH, def.aspect, def.aspectMax ?? def.aspect);

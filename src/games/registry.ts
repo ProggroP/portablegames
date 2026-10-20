@@ -40,7 +40,7 @@ export const GAMES: GameDef[] = [
   { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B', create: createGomoku },
   { id: 'fallreihe', name: 'Fallreihe', kind: 'Steine fallen lassen, vier verbinden', seating: { nebeneinander: 'portrait', allein: 'portrait' }, aspect: 7 / 6, icon: '___OB_BOO', create: createFallreihe },
   { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 4 / 6, icon: 'B_B_O_O_W', create: createPaarweise },
-  { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.62, aspectMax: 0.85, icon: 'W_W_W_W_W', create: createFuenfWuerfel },
+  { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.62, aspectMax: 1, compactHud: true, icon: 'W_W_W_W_W', create: createFuenfWuerfel },
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.85, icon: '_W_WOW_W_', create: createFeldraeumer },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 0.68, aspectMax: 0.82, icon: 'W_W_B_W_W', create: createNeunerfeld },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.78, icon: 'WOWW_WOWO', create: createSolitaer },

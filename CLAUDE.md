@@ -7,6 +7,7 @@ PWA mit klassischen Spielen für 1 bis 2 Spieler an einem Smartphone. Konzept un
 - `npm test`: Vitest für die Spiellogik
 - `npm run build`: `tsc --noEmit` und Vite-Build
 - `npm run dev`: Entwicklungsserver
+- `npm run check:layout`: bei laufendem `npm run preview` prüfen, ob auf kleinen Handys (360×640, hoch und quer) alle Bedienelemente erreichbar sind. Vor jeder Veröffentlichung ausführen.
 
 ## Konventionen
 
@@ -16,6 +17,6 @@ PWA mit klassischen Spielen für 1 bis 2 Spieler an einem Smartphone. Konzept un
 - Spieler 1 ist Index 0 (Blau, Kreis), Spieler 2 ist Index 1 (Orange, Quadrat).
 - Jedes Spiel gibt in `registry.ts` für jede Sitzordnung das Format an. Die Drehung der Bühne übernimmt `src/core/stage.ts`. Spiele drehen nur Beschriftungen auf dem Brett, die gegenüber für Spieler 2 lesbar sein müssen (`ctx.mode === 'gegenueber'`).
 - Querformat-Bretter können mit `aspectMax` in die Breite wachsen.
-- Tippflächen mindestens 44 px.
+- Tippflächen mindestens 44 px. Layouts nicht nur auf großen Bildschirmen prüfen: Echte Handys haben durch Browserleisten oft nur 640 bis 670 px Höhe.
 - Jedes Spiel braucht eine Kurzanleitung in `src/games/howto.ts`, der erste Punkt nennt das Ziel.
 - Fingerpositionen immer über `clientToLocal()` aus `src/core/stage.ts` umrechnen, sonst stimmen sie bei gedrehter Bühne nicht.

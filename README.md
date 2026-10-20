@@ -13,6 +13,7 @@ npm test         # Tests der Spiellogik
 npm run build    # Typprüfung und Produktions-Build nach dist/
 npm run preview  # Build lokal ansehen
 npm run icons    # App-Icons neu erzeugen (Python mit Pillow)
+npm run check:layout  # bei laufendem preview: alle Bedienelemente auf kleinen Handys erreichbar? (braucht Playwright)
 ```
 
 Zum Testen auf dem Handy im selben WLAN: `npm run dev -- --host` und die angezeigte Adresse öffnen.

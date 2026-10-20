@@ -442,7 +442,21 @@ a.game-card:hover {
   align-items: center;
   padding: 6px 16px;
 }
+/* Im Querformat ist die Leiste niedrig: kleinere Schrift, kein Hinweistext */
 .stage--facing.is-landscape .hud__note {
+  display: none;
+}
+.stage--facing.is-landscape .hud__top {
+  gap: 14px;
+}
+.stage--facing.is-landscape .hud__name {
+  font-size: 17px;
+}
+.stage--facing.is-landscape .hud__score {
+  font-size: 26px;
+}
+.stage--facing.is-landscape .hud__bottom {
+  flex-wrap: nowrap;
   min-height: 0;
 }
 
@@ -826,6 +840,34 @@ a.game-card:hover {
   }
 }
 
+/* Schmale Spieleranzeigen gegenüber (für Spiele, die viel Höhe brauchen) */
+.stage--facing.is-compact .hud {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+}
+.stage--facing.is-compact .hud__top {
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+.stage--facing.is-compact .hud__name {
+  font-size: 17px;
+}
+.stage--facing.is-compact .hud__score {
+  font-size: 26px;
+}
+.stage--facing.is-compact .hud__bottom {
+  flex-wrap: nowrap;
+  min-height: 0;
+}
+.stage--facing.is-compact .hud__status,
+.stage--facing.is-compact .hud__note {
+  display: none;
+}
+
 /* Nebeneinander im Querformat: Leiste und Anzeigen links, Brett rechts */
 .stage--shared.is-landscape {
   display: grid;
@@ -839,6 +881,13 @@ a.game-card:hover {
   grid-column: 1;
   grid-row: 1;
   padding: 0 0 0 12px;
+}
+/* In der schmalen Seitenspalte ist kein Platz für den Titel neben vier Knöpfen */
+.stage--shared.is-landscape .play-bar__title {
+  display: none;
+}
+.stage--shared.is-landscape .play-bar__actions {
+  margin-left: auto;
 }
 .stage--shared.is-landscape .hud-row {
   grid-column: 1;
@@ -1392,6 +1441,9 @@ a.game-card:hover {
   flex-direction: column;
   gap: 8px;
   padding: 10px;
+  /* Notlösung, falls der Platz trotz allem nicht reicht: scrollen statt abschneiden */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .fw__inner.is-flipped {
   transform: rotate(180deg);
@@ -1403,11 +1455,14 @@ a.game-card:hover {
   text-align: center;
 }
 .fw-dice {
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
   gap: 8px;
 }
 .fw-die {
+  width: min(100%, 52px);
   aspect-ratio: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1437,7 +1492,8 @@ a.game-card:hover {
   transform: scale(0.8);
 }
 .fw-roll {
-  min-height: 48px;
+  flex: 0 0 auto;
+  min-height: 44px;
 }
 .fw-roll:disabled {
   background: var(--surface-2);
@@ -1447,8 +1503,7 @@ a.game-card:hover {
   font-size: 14px;
 }
 .fw-sheet {
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 1 0 auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
@@ -1460,7 +1515,7 @@ a.game-card:hover {
 }
 .fw-row {
   flex: 1 1 0;
-  min-height: 36px;
+  min-height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;

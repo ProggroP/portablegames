@@ -33,7 +33,8 @@ export function createFuenfWuerfel(_host: HTMLElement, ctx: GameContext): GameIn
   );
   const bonusRow = h('div', { class: 'fw-row fw-row--info' }, h('span', { class: 'fw-row__name' }, 'Bonus'), h('span', { class: 'fw-row__value' }));
   const sumRow = h('div', { class: 'fw-row fw-row--info fw-row--sum' }, h('span', { class: 'fw-row__name' }, 'Gesamt'), h('span', { class: 'fw-row__value' }));
-  const owner = h('p', { class: 'fw-owner' });
+  // Nur gegenüber nötig: Dort sind die Spieleranzeigen schmal und zeigen nicht, wer dran ist.
+  const owner = h('p', { class: 'fw-owner', hidden: ctx.mode !== 'gegenueber' });
 
   const inner = h('div', { class: 'fw__inner' },
     owner,

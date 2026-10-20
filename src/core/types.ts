@@ -52,6 +52,8 @@ export interface GameDef {
   aspect: number;
   /** Optional: Bis zu diesem Verhältnis darf das Brett in die Breite wachsen. */
   aspectMax?: number;
+  /** Gegenüber schmale Spieleranzeigen in einer Zeile, wenn das Brett viel Höhe braucht. */
+  compactHud?: boolean;
   /** 9 Zeichen für das 3x3-Symbol: B, O, W oder _ */
   icon: string;
   /** Kurzanleitung: zuerst das Ziel, dann die wichtigsten Regeln, je ein Satz oder zwei. */

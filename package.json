@@ -10,7 +10,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "icons": "python3 scripts/make_icons.py"
+    "icons": "python3 scripts/make_icons.py",
+    "check:layout": "node scripts/check-layout.cjs http://localhost:4173"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
