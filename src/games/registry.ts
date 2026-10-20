@@ -1,4 +1,5 @@
 import type { GameDef } from '../core/types';
+import { createAirHockey } from './airhockey/view';
 import { createBackgammon } from './backgammon/view';
 import { createDame } from './dame/view';
 import { createKaesekaestchen } from './kaesekaestchen/view';
@@ -18,11 +19,20 @@ export const GAMES: GameDef[] = [
   { id: 'kaesekaestchen', name: 'Käsekästchen', kind: 'Linien ziehen, Kästchen schließen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BBO_BOWWO', create: createKaesekaestchen },
   { id: 'mancala', name: 'Mancala', kind: 'Bohnen säen und ernten', seating: BOTH_LANDSCAPE, aspect: 2.2, aspectMax: 3.2, icon: 'OOO___BBB', create: createMancala },
   { id: 'backgammon', name: 'Backgammon', kind: 'Würfeln und heimziehen', seating: BOTH_LANDSCAPE, aspect: 1.5, aspectMax: 2.6, icon: 'B_OB_OB_O', create: createBackgammon },
+  {
+    id: 'airhockey',
+    name: 'Air-Hockey',
+    kind: 'Puck ins Tor schießen',
+    seating: { gegenueber: 'portrait', nebeneinander: 'landscape', allein: 'portrait' },
+    aspect: 0.6,
+    aspectMax: 1.7,
+    icon: '_O__W__B_',
+    create: createAirHockey
+  },
 
   // Geplant, noch nicht spielbar
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
   { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B' },
-  { id: 'airhockey', name: 'Air-Hockey', kind: 'Puck ins Tor schießen', seating: { gegenueber: 'portrait', nebeneinander: 'landscape' }, aspect: 0.6, icon: '_O__W__B_' },
   { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 0.7, icon: 'B_B_O_O_W' },
   { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.6, icon: 'W_W_W_W_W' },
   { id: 'fallreihe', name: 'Fallreihe', kind: 'Steine fallen lassen, vier verbinden', seating: { nebeneinander: 'portrait', allein: 'portrait' }, aspect: 7 / 6, icon: '___OB_BOO' },

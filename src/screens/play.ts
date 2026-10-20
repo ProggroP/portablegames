@@ -6,7 +6,7 @@ import type { GameDef, GameInstance, GameStatus, PlayerIndex } from '../core/typ
 import { keepAwake } from '../core/wakeLock';
 
 // Platz, der neben dem Brett mindestens für die Anzeigen bleiben muss (in px).
-const HUD_MIN = { portrait: 132, landscape: 60 };
+const HUD_MIN = { portrait: 150, landscape: 60 };
 const BAR_H = 56;
 const ROW_H = { portrait: 80, landscape: 64 };
 const MSG_H = 64;
@@ -165,6 +165,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     stage.style.width = `${g.width}px`;
     stage.style.height = `${g.height}px`;
     stage.style.transform = `translate(-50%, -50%) rotate(${g.rotation}deg)`;
+    stage.dataset.rotation = String(g.rotation);
 
     const shape = g.height >= g.width ? 'portrait' : 'landscape';
     stage.classList.toggle('is-landscape', shape === 'landscape');

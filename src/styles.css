@@ -1114,3 +1114,12 @@ a.game-card:hover {
     animation: none;
   }
 }
+
+/* Air-Hockey */
+.ah {
+  position: relative;
+}
+.ah-canvas {
+  display: block;
+  touch-action: none;
+}

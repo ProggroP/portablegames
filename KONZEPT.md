@@ -42,7 +42,7 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Mancala | Kalaha | Quer | Quer | spielbar |
 | Gomoku | | Hoch | Hoch | geplant, 13×13 oder Bestätigungs-Tipp |
 | Käsekästchen | | Hoch | Hoch | spielbar, 5×5 Kästchen |
-| Air-Hockey | | Hoch | Quer | geplant, Echtzeit mit Multitouch |
+| Air-Hockey | | Hoch | Quer | spielbar, Echtzeit mit Multitouch, auch allein gegen den Computer |
 | Paarweise | Memory | Hoch | Hoch | geplant, Motive ohne Oben und Unten |
 | Fünf Würfel | Kniffel | Hoch | Hoch | geplant, gegenüber mit eigenem Block pro Spieler |
 | Fallreihe | Vier gewinnt | nicht möglich | Hoch | geplant |
@@ -58,6 +58,7 @@ Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete d
 - **Dame:** Gespielt wird auf den dunklen Feldern. Es herrscht Schlagzwang, Mehrfachsprünge werden zu Ende geführt. Einfache Steine ziehen und schlagen nur vorwärts. Die Dame zieht und schlägt beliebig weit, vorwärts und rückwärts. Wer die letzte Reihe erreicht, bekommt eine Dame, der Zug endet dort. Nach 50 Damenzügen ohne Schlagen endet das Spiel unentschieden.
 - **Käsekästchen:** Wer ein Kästchen schließt, bekommt es und ist noch einmal dran.
 - **Mancala:** Kalah-Regeln mit 6 Mulden und je 4 Bohnen. Endet die Saat im eigenen Speicher, ist man noch einmal dran. Endet sie in einer leeren eigenen Mulde, wird die gegenüberliegende Mulde geschlagen, wenn dort Bohnen liegen. Ist eine Seite leer, bekommt jeder die Bohnen auf seiner Seite.
+- **Air-Hockey:** Wer zuerst 7 Tore schießt, gewinnt. Jeder Schläger bleibt in der eigenen Hälfte. Nach einem Tor hat der Gegner Anstoß. In den Ecken schiebt ein leichter Luftstrom einen langsamen Puck heraus, damit er nicht festklemmt.
 - **Backgammon:** Standardregeln ohne Verdopplungswürfel und ohne Gammon-Wertung. Beide Würfel müssen genutzt werden, wenn es geht, sonst der höhere. Wer beginnt, wechselt von Spiel zu Spiel, es gibt keinen Eröffnungswurf.
 
 ## Namen
@@ -90,7 +91,7 @@ Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine
 1. Grundgerüst mit Sitzordnungen, Drehung und PWA, dazu Tic-Tac-Toe und Reversi. **(erledigt)**
 2. Mühle, Dame, Käsekästchen: weitere quadratische Bretter. **(erledigt)**
 3. Mancala und Backgammon: erste Spiele im Querformat. **(erledigt)**
-4. Air-Hockey: erstes Echtzeitspiel.
+4. Air-Hockey: erstes Echtzeitspiel. **(erledigt)**
 5. Die übrigen Spiele.
 
 ## Offene Punkte

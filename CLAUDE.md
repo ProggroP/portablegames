@@ -17,3 +17,4 @@ PWA mit klassischen Spielen für 1 bis 2 Spieler an einem Smartphone. Konzept un
 - Jedes Spiel gibt in `registry.ts` für jede Sitzordnung das Format an. Die Drehung der Bühne übernimmt `src/core/stage.ts`. Spiele drehen nur Beschriftungen auf dem Brett, die gegenüber für Spieler 2 lesbar sein müssen (`ctx.mode === 'gegenueber'`).
 - Querformat-Bretter können mit `aspectMax` in die Breite wachsen.
 - Tippflächen mindestens 44 px.
+- Fingerpositionen immer über `clientToLocal()` aus `src/core/stage.ts` umrechnen, sonst stimmen sie bei gedrehter Bühne nicht.
