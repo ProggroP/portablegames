@@ -1,0 +1,24 @@
+{
+  "name": "portablegames",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Klassische Spiele für ein Smartphone, allein oder zu zweit, als PWA",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "icons": "python3 scripts/make_icons.py"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "@fontsource/fredoka": "^5.3.0"
+  }
+}
