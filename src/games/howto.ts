@@ -76,5 +76,13 @@ export const HOW_TO: Record<string, string[]> = {
     'Oben zählen die passenden Augen. Ab 63 Punkten oben gibt es 35 Bonus.',
     'Unten: Dreier- und Viererpasch zählen alle Augen, Full House (drei und zwei Gleiche) 25, kleine Straße (vier in Folge) 30, große Straße (fünf in Folge) 40, Fünf Gleiche 50, Chance alle Augen.',
     'Nach 13 Runden ist der Block voll, und es wird gezählt.'
+  ],
+  feldraeumer: [
+    'Ziel: alle Felder ohne Mine aufdecken.',
+    'Tippe auf ein Feld, um es aufzudecken. Der erste Tipp ist immer sicher.',
+    'Eine Zahl sagt, wie viele Minen in den acht Feldern rundherum liegen.',
+    'Wo du eine Mine vermutest, markierst du das Feld: lange drücken oder oben auf „Markieren“ umschalten.',
+    'Stehen um eine Zahl schon genug Markierungen, tippe auf die Zahl. Dann werden die übrigen Nachbarn aufgedeckt.',
+    'Mehr Schwierigkeit heißt größeres Feld und mehr Minen.'
   ]
 };

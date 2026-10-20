@@ -38,6 +38,8 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   const facing = mode === 'gegenueber';
   const orientation = def.seating[mode] ?? 'portrait';
   const players = makePlayers(cfg.names, mode === 'allein' ? 1 : null);
+  // Spiele nur für eine Person: kein Gegner in der Anzeige, Ergebnis ist geschafft oder verloren.
+  const soloOnly = !def.seating.gegenueber && !def.seating.nebeneinander;
 
   let starter: PlayerIndex = 0;
   let game: GameInstance | null = null;
@@ -46,6 +48,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   function resultText(st: GameStatus): string {
     const w = st.finished?.winner;
     if (w === undefined) return '';
+    if (soloOnly) return w === 0 ? 'Geschafft!' : 'Leider verloren.';
     if (w === null) return 'Unentschieden.';
     if (mode === 'allein') return w === 0 ? 'Du hast gewonnen!' : 'Der Computer hat gewonnen.';
     return `${players[w].name} gewinnt!`;
@@ -75,7 +78,9 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
         el.classList.toggle('is-active', active);
         score.textContent = st.scores ? String(st.scores[i]) : '';
         let text = '';
-        if (st.finished) {
+        if (soloOnly) {
+          text = st.finished ? (st.finished.winner === 0 ? 'Geschafft!' : 'Verloren') : '';
+        } else if (st.finished) {
           const w = st.finished.winner;
           text = w === null ? 'Unentschieden' : w === i ? 'Gewonnen!' : 'Verloren';
         } else if (active) {
@@ -157,7 +162,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
         h('span', { class: 'play-bar__title' }, def.name),
         h('span', { class: 'play-bar__actions' }, iconButton('help', 'Kurzanleitung', () => showRules(true)), flip, iconButton('restart', 'Neues Spiel', restart))
       ),
-      h('div', { class: 'hud-row' }, huds[0].el, huds[1].el),
+      h('div', { class: 'hud-row' }, huds[0].el, soloOnly ? null : huds[1].el),
       boardWrap,
       h('div', { class: 'play-foot' }, message, againBtn)
     );

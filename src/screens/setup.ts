@@ -109,7 +109,7 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
     if (solo) {
       sections.push(
         h('section', { class: 'section' },
-          h('h2', { class: 'label' }, 'Computer'),
+          h('h2', { class: 'label' }, duoModes.length ? 'Computer' : 'Schwierigkeit'),
           segmented('Schwierigkeit', LEVELS, cfg.level, (l) => {
             cfg.level = l;
             render();
@@ -127,7 +127,7 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
           solo ? null : nameField(1, cfg.mode === 'gegenueber' ? 'sitzt gegenüber' : 'rechts')
         )
       ),
-      h('p', { class: 'muted small' }, `Format: ${FORMAT_TEXT[orientation]}. Wer beginnt, wechselt nach jedem Spiel.`)
+      h('p', { class: 'muted small' }, duoModes.length ? `Format: ${FORMAT_TEXT[orientation]}. Wer beginnt, wechselt nach jedem Spiel.` : `Format: ${FORMAT_TEXT[orientation]}.`)
     );
 
     body.replaceChildren(...sections);
