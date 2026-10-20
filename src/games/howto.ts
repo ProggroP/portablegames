@@ -91,5 +91,13 @@ export const HOW_TO: Record<string, string[]> = {
     'Doppelte Zahlen werden rot angezeigt.',
     'Mit „Notizen“ merkst du dir mögliche Zahlen klein vor. Setzt du eine Zahl, verschwindet sie aus den Notizen der Nachbarn.',
     'Jedes Rätsel hat genau eine Lösung. Mehr Schwierigkeit heißt weniger vorgegebene Zahlen.'
+  ],
+  solitaer: [
+    'Ziel: alle Karten nach Farbe sortiert vom Ass bis zum König auf die vier Ablagen oben rechts legen.',
+    'Auf den Spalten legst du absteigend und abwechselnd rot und schwarz an. In eine leere Spalte darf nur ein König.',
+    'Tippe eine Karte an, sie springt an die passende Stelle. Tippst du eine Karte mitten in einer Spalte an, wandert sie mit allen Karten darauf.',
+    'Oben links liegt der Stapel. Tippe darauf, um Karten aufzudecken. Ist er leer, kommt der Abwurf zurück.',
+    'Auf „Schwer“ deckst du drei Karten auf einmal auf, nur die oberste ist spielbar.',
+    'Nicht jede Verteilung ist lösbar. Mit „Rückgängig“ kannst du Züge zurücknehmen.'
   ]
 };

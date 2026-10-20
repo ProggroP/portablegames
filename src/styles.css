@@ -1707,3 +1707,107 @@ a.game-card:hover {
   opacity: 0.4;
   cursor: default;
 }
+
+/* Solitär */
+.sol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sol-table {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.sol-bar {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+}
+.sol-tool {
+  flex: 1 1 0;
+}
+.sol-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.sol-card,
+.sol-slot {
+  position: absolute;
+  padding: 0;
+  border-radius: calc(var(--cw, 48px) * 0.12);
+}
+.sol-card {
+  overflow: hidden;
+  border: 1px solid rgb(0 0 0 / 35%);
+  background: #f4f4f6;
+  color: #12131a;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+  cursor: pointer;
+}
+.sol-card.is-red {
+  color: #c81e3a;
+}
+.sol-card.is-down,
+.sol-slot.is-back {
+  border: 2px solid #f4f4f6;
+  background: repeating-linear-gradient(45deg, #3a5bb8 0 5px, #2f4c9c 5px 10px);
+}
+.sol-card:disabled {
+  cursor: default;
+}
+.sol-corner {
+  position: absolute;
+  left: 7%;
+  top: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  line-height: 1;
+}
+.sol-rank {
+  font-family: var(--font-display);
+  font-size: calc(var(--cw, 48px) * 0.32);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+.sol-suit {
+  width: calc(var(--cw, 48px) * 0.22);
+  height: calc(var(--cw, 48px) * 0.22);
+}
+.sol-big {
+  position: absolute;
+  right: 8%;
+  bottom: 7%;
+  width: 46%;
+  height: 46%;
+}
+.sol-slot {
+  border: 2px dashed var(--line-strong);
+  background: transparent;
+  cursor: pointer;
+}
+.sol-slot.is-foundation {
+  border-style: solid;
+  border-color: var(--line);
+}
+.sol-slot:disabled {
+  cursor: default;
+}
+.is-shake {
+  animation: shake 0.3s ease;
+}
+@keyframes shake {
+  25% {
+    translate: -4px 0;
+  }
+  75% {
+    translate: 4px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-shake {
+    animation: none;
+  }
+}

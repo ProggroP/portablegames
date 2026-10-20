@@ -13,6 +13,7 @@ import { createMuehle } from './muehle/view';
 import { createNeunerfeld } from './neunerfeld/view';
 import { createPaarweise } from './paarweise/view';
 import { createReversi } from './reversi/view';
+import { createSolitaer } from './solitaer/view';
 import { createTicTacToe } from './tictactoe/view';
 
 const BOTH_PORTRAIT = { gegenueber: 'portrait', nebeneinander: 'portrait', allein: 'portrait' } as const;
@@ -42,10 +43,10 @@ export const GAMES: GameDef[] = [
   { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.62, aspectMax: 0.85, icon: 'W_W_W_W_W', create: createFuenfWuerfel },
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.85, icon: '_W_WOW_W_', create: createFeldraeumer },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 0.68, aspectMax: 0.82, icon: 'W_W_B_W_W', create: createNeunerfeld },
+  { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.78, icon: 'WOWW_WOWO', create: createSolitaer },
 
   // Geplant, noch nicht spielbar
-  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
-  { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.6, icon: 'WOWW_WOWO' }
+  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' }
 ];
 
 for (const g of GAMES) g.howTo = HOW_TO[g.id];
