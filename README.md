@@ -38,7 +38,15 @@ src/
 
 ## Veröffentlichen
 
-Jeder Push auf `main` baut die App und veröffentlicht sie über GitHub Pages. Einmalig nötig: unter **Settings › Pages** als Quelle „GitHub Actions“ auswählen.
+`npm run build` erzeugt den Ordner `dist/`. Sein **Inhalt** kommt auf den Webspace, wahlweise ins Hauptverzeichnis oder in einen Unterordner. Die Pfade sind relativ, die App läuft in jedem Ordner.
+
+Ohne eigenen Build: Jeder Push auf `main` startet unter **Actions** den Ablauf „Build“. Im fertigen Lauf liegt unter **Artifacts** das Paket `portablegames-webspace` als ZIP zum Herunterladen.
+
+Voraussetzungen und Hinweise:
+
+- **HTTPS ist Pflicht.** Ohne HTTPS funktionieren Offline-Modus, Installation und das Wachhalten des Displays nicht.
+- Die Datei `.htaccess` gehört mit hoch. Sie beginnt mit einem Punkt und wird in manchen FTP-Programmen erst angezeigt, wenn versteckte Dateien eingeblendet sind. Sie wirkt nur auf Apache-Servern und sorgt für richtige Dateitypen und dafür, dass Updates ankommen.
+- Bei einem Update alle Dateien ersetzen. Alte Dateien in `assets/` dürfen gelöscht werden.
 
 ## Lizenz
 

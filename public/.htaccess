@@ -1,0 +1,18 @@
+# PortableGames: Einstellungen für Webspace mit Apache-Server.
+# Auf anderen Servern (zum Beispiel nginx) wird diese Datei ignoriert.
+
+AddType application/manifest+json .webmanifest
+AddType text/javascript .js
+AddType image/svg+xml .svg
+AddType font/woff2 .woff2
+
+<IfModule mod_headers.c>
+  # Service Worker, Startseite und Manifest immer neu prüfen, damit Updates ankommen.
+  <FilesMatch "^(sw\.js|registerSW\.js|index\.html|manifest\.webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Dateien mit Prüfsumme im Namen ändern sich nie und dürfen lange im Cache bleiben.
+  <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

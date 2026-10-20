@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitest/config';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// GitHub Pages liefert das Projekt unter /portablegames/ aus, lokal unter /.
-const base = process.env.BASE_PATH ?? '/';
+// Relative Pfade: Der Build läuft in jedem Ordner eines Webspace.
+// Mit BASE_PATH lässt sich ein fester Pfad erzwingen, zum Beispiel /spiele/.
+const base = process.env.BASE_PATH ?? './';
 
 export default defineConfig({
   base,

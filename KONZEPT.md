@@ -73,7 +73,7 @@ Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine
 - PWA über `vite-plugin-pwa`: Offline-Cache, installierbar.
 - Die Wake-Lock-API hält das Display während eines Spiels an, wo der Browser das unterstützt.
 - Spiellogik ist von der Darstellung getrennt (`logic.ts` und `view.ts`) und mit Vitest getestet.
-- Veröffentlichung über GitHub Pages per GitHub Actions.
+- Veröffentlichung auf eigenem Webspace. GitHub Actions testet und baut bei jeder Änderung ein fertiges Paket.
 
 ## Reihenfolge
 
