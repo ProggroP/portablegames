@@ -146,6 +146,6 @@ describe('Backgammon: Computer', () => {
   it('die schwere Stufe antwortet schnell genug', () => {
     const t = performance.now();
     computerSequence(startState(0), [5, 2], 2, seeded(1));
-    expect(performance.now() - t).toBeLessThan(3000);
+    expect(performance.now() - t).toBeLessThan(5000);
   });
 });

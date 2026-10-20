@@ -174,6 +174,6 @@ export function computerMove(s: DameState, level: Level, rng: () => number = Mat
   if (!moves.length) throw new Error('Kein Zug möglich');
   if (level === 0) return moves[Math.floor(rng() * moves.length)];
   return level === 1
-    ? bestMove(GAME, s, { timeMs: 250, maxDepth: 2, rng })
-    : bestMove(GAME, s, { timeMs: 700, maxDepth: 10, rng });
+    ? bestMove(GAME, s, { timeMs: 250, maxDepth: 2, minDepth: 2, rng })
+    : bestMove(GAME, s, { timeMs: 700, maxDepth: 10, minDepth: 4, rng });
 }

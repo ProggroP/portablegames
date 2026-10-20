@@ -193,6 +193,6 @@ export function computerMove(s: MillState, level: Level, rng: () => number = Mat
     return pool[Math.floor(rng() * pool.length)];
   }
   return level === 1
-    ? bestMove(GAME, s, { timeMs: 250, maxDepth: 2, rng })
-    : bestMove(GAME, s, { timeMs: 700, maxDepth: 8, rng });
+    ? bestMove(GAME, s, { timeMs: 250, maxDepth: 2, minDepth: 2, rng })
+    : bestMove(GAME, s, { timeMs: 700, maxDepth: 8, minDepth: 3, rng });
 }

@@ -18,15 +18,17 @@ class TimeUp extends Error {}
 export function bestMove<S, M>(
   game: SearchGame<S, M>,
   state: S,
-  opts: { timeMs: number; maxDepth: number; rng?: () => number }
+  opts: { timeMs: number; maxDepth: number; minDepth?: number; rng?: () => number }
 ): M {
   const me = game.turn(state);
   const rng = opts.rng ?? Math.random;
   const deadline = performance.now() + opts.timeMs;
   let nodes = 0;
+  // Bis zur Mindesttiefe wird ohne Zeitlimit gesucht, damit langsame Geräte nicht schwächer spielen.
+  let timed = false;
 
   const search = (s: S, depth: number, alpha: number, beta: number): number => {
-    if (++nodes % 512 === 0 && performance.now() > deadline) throw new TimeUp();
+    if (timed && ++nodes % 512 === 0 && performance.now() > deadline) throw new TimeUp();
     if (depth === 0 || game.isOver(s)) return game.evaluate(s, me);
     const maximizing = game.turn(s) === me;
     let best = maximizing ? -Infinity : Infinity;
@@ -50,6 +52,7 @@ export function bestMove<S, M>(
   let chosen = root[0];
 
   for (let depth = 1; depth <= opts.maxDepth; depth++) {
+    timed = depth > (opts.minDepth ?? 1);
     try {
       let best = -Infinity;
       let bestMove = root[0];

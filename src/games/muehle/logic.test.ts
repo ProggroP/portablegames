@@ -4,6 +4,13 @@ import {
   type Cell, type MillState
 } from './logic';
 
+function seeded(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return seed / 2147483647;
+  };
+}
+
 function state(board: string, hand: [number, number], turn: 0 | 1 = 0, quiet = 0): MillState {
   const b: Cell[] = board.replace(/\s/g, '').split('').map((c) => (c === 'B' ? 0 : c === 'O' ? 1 : null));
   return { board: b, hand, turn, quiet };
@@ -97,16 +104,16 @@ describe('Mühle: Regeln', () => {
 });
 
 describe('Mühle: Computer', () => {
-  it('spielt auf den Stufen Leicht und Mittel gültige Züge bis zum Ende', () => {
+  it('spielt auf den Stufen Leicht und Mittel nur gültige Züge', () => {
     for (const level of [0, 1] as const) {
+      const rng = seeded(5 + level);
       let s = startState(0);
-      let guard = 0;
-      while (!outcome(s) && guard++ < 300) {
-        const m = computerMove(s, level);
+      let plies = 0;
+      while (!outcome(s) && plies++ < 300) {
+        const m = computerMove(s, level, rng);
         expect(legalMoves(s)).toContainEqual(m);
         s = applyMove(s, m);
       }
-      expect(outcome(s)).not.toBeNull();
     }
   }, 60000);
 

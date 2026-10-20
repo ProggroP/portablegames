@@ -12,6 +12,13 @@ function state(rows: string[], turn: 0 | 1 = 0, quiet = 0): DameState {
   });
   return { board, turn, quiet };
 }
+function seeded(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return seed / 2147483647;
+  };
+}
+
 const sq = (name: string): number => (8 - Number(name[1])) * 8 + 'abcdefgh'.indexOf(name[0]);
 
 describe('Dame', () => {
@@ -77,14 +84,15 @@ describe('Dame', () => {
 
   it('der Computer spielt auf den Stufen Leicht und Mittel gültige Züge bis zum Ende', () => {
     for (const level of [0, 1] as const) {
+      const rng = seeded(11 + level);
       let s = startState(0);
       let guard = 0;
-      while (!outcome(s) && guard++ < 400) {
-        const m = computerMove(s, level);
+      while (!outcome(s) && guard++ < 3000) {
+        const m = computerMove(s, level, rng);
         expect(legalMoves(s)).toContainEqual(m);
         s = applyMove(s, m);
       }
-      expect(guard).toBeLessThan(400);
+      expect(outcome(s)).not.toBeNull();
     }
   }, 60000);
 

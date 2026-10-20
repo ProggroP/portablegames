@@ -109,6 +109,6 @@ export function computerMove(s: MancalaState, level: Level, rng: () => number = 
   if (!moves.length) throw new Error('Kein Zug möglich');
   if (level === 0) return moves[Math.floor(rng() * moves.length)];
   return level === 1
-    ? bestMove(GAME, s, { timeMs: 200, maxDepth: 2, rng })
-    : bestMove(GAME, s, { timeMs: 700, maxDepth: 14, rng });
+    ? bestMove(GAME, s, { timeMs: 200, maxDepth: 2, minDepth: 2, rng })
+    : bestMove(GAME, s, { timeMs: 700, maxDepth: 14, minDepth: 5, rng });
 }
