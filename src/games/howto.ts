@@ -99,5 +99,13 @@ export const HOW_TO: Record<string, string[]> = {
     'Oben links liegt der Stapel. Tippe darauf, um Karten aufzudecken. Ist er leer, kommt der Abwurf zurück.',
     'Auf „Schwer“ deckst du drei Karten auf einmal auf, nur die oberste ist spielbar.',
     'Nicht jede Verteilung ist lösbar. Mit „Rückgängig“ kannst du Züge zurücknehmen.'
+  ],
+  schach: [
+    'Ziel: den gegnerischen König mattsetzen. Er steht im Schach und kann nicht mehr entkommen.',
+    'Wer beginnt, spielt die weißen Figuren. Danach wechselt das von Spiel zu Spiel.',
+    'Tippe eine Figur an, die Punkte zeigen ihre möglichen Züge. Ringe markieren Figuren, die du schlagen kannst.',
+    'Rochade, en passant und Bauernumwandlung werden angeboten, sobald sie erlaubt sind. Bei der Umwandlung wählst du die neue Figur.',
+    'Unentschieden: Patt, dreimal dieselbe Stellung, zu wenig Material oder 50 Züge ohne Bauernzug und ohne Schlagen.',
+    'Die Zahl neben deinem Namen ist der Wert der Figuren, die du geschlagen hast (Bauer 1, Springer und Läufer 3, Turm 5, Dame 9).'
   ]
 };

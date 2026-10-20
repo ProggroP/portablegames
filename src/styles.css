@@ -1866,3 +1866,101 @@ a.game-card:hover {
     animation: none;
   }
 }
+
+/* Schach */
+.ch {
+  position: relative;
+}
+.ch-board {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border: 4px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ch-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+.ch-cell:disabled {
+  cursor: default;
+}
+.ch-light {
+  background: #4a4e61;
+}
+.ch-dark {
+  background: #2a2d3a;
+}
+.ch-cell.is-last {
+  box-shadow: inset 0 0 0 100px rgb(255 255 255 / 10%);
+}
+.ch-cell.is-selected {
+  box-shadow: inset 0 0 0 3px var(--text);
+}
+.ch-cell.is-check {
+  background: #8f2436;
+}
+.ch-piece {
+  width: 88%;
+  height: 88%;
+  display: flex;
+}
+.ch-piece svg {
+  width: 100%;
+  height: 100%;
+}
+.ch-piece.is-flipped {
+  transform: rotate(180deg);
+}
+.ch-dot,
+.ch-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ch-dot {
+  width: 28%;
+  height: 28%;
+  background: var(--pc);
+  opacity: 0.7;
+}
+.ch-ring {
+  inset: 6%;
+  border: 3px solid var(--pc);
+}
+.ch-promo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+.ch-promo.is-flipped {
+  rotate: 180deg;
+}
+.ch-promo__btn {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  cursor: pointer;
+}
