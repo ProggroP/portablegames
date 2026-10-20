@@ -46,9 +46,9 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Paarweise | Memory | Hoch | Hoch | spielbar, 12 Paare, Motive ohne Oben und Unten |
 | Fünf Würfel | Kniffel | Hoch | Hoch | spielbar, gegenüber dreht sich der Block zum Spieler am Zug |
 | Fallreihe | Vier gewinnt | nicht möglich | Hoch | spielbar |
-| Solitär | Klondike | | | geplant, nur allein |
-| Feldräumer | Minesweeper | | | geplant, nur allein |
-| Neunerfeld | Sudoku | | | geplant, nur allein |
+| Solitär | Klondike | | | spielbar, nur allein, Antippen statt Ziehen |
+| Feldräumer | Minesweeper | | | spielbar, nur allein, höchstens 9 Spalten |
+| Neunerfeld | Sudoku | | | spielbar, nur allein, Rätsel werden in der App erzeugt |
 
 ## Regelvarianten
 
@@ -60,6 +60,9 @@ Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete d
 - **Mancala:** Kalah-Regeln mit 6 Mulden und je 4 Bohnen. Endet die Saat im eigenen Speicher, ist man noch einmal dran. Endet sie in einer leeren eigenen Mulde, wird die gegenüberliegende Mulde geschlagen, wenn dort Bohnen liegen. Ist eine Seite leer, bekommt jeder die Bohnen auf seiner Seite.
 - **Air-Hockey:** Wer zuerst 7 Tore schießt, gewinnt. Jeder Schläger bleibt in der eigenen Hälfte. Nach einem Tor hat der Gegner Anstoß. In den Ecken schiebt ein leichter Luftstrom einen langsamen Puck heraus, damit er nicht festklemmt.
 - **Fünf Würfel:** Bis zu drei Würfe pro Zug, 13 Zeilen, 35 Bonus ab 63 Punkten oben. Ohne Extrapunkte für weitere „Fünf Gleiche“.
+- **Solitär:** Klondike-Regeln. Leicht und Mittel ziehen eine Karte nach, Schwer drei. Der Stapel darf beliebig oft durchgespielt werden. Nicht jede Verteilung ist lösbar.
+- **Feldräumer:** Der erste Tipp ist immer sicher. Leicht 8×10 mit 10 Minen, Mittel 9×12 mit 18, Schwer 9×14 mit 28.
+- **Neunerfeld:** Jedes Rätsel hat genau eine Lösung. Vorgegeben sind etwa 40 (Leicht), 32 (Mittel) oder 26 Zahlen (Schwer). Doppelte Zahlen werden angezeigt, falsche, aber regelkonforme Zahlen nicht.
 - **Backgammon:** Standardregeln ohne Verdopplungswürfel und ohne Gammon-Wertung. Beide Würfel müssen genutzt werden, wenn es geht, sonst der höhere. Wer beginnt, wechselt von Spiel zu Spiel, es gibt keinen Eröffnungswurf.
 
 ## Namen

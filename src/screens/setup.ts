@@ -119,14 +119,19 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
     }
 
     const orientation = def.seating[cfg.mode] ?? 'portrait';
-    sections.push(
-      h('section', { class: 'section' },
-        h('h2', { class: 'label' }, 'Namen'),
-        h('div', { class: 'stack stack--tight' },
-          nameField(0, solo ? 'das bist du' : cfg.mode === 'gegenueber' ? 'sitzt unten' : 'links'),
-          solo ? null : nameField(1, cfg.mode === 'gegenueber' ? 'sitzt gegenüber' : 'rechts')
+    if (duoModes.length) {
+      // Namen nur, wenn es einen Gegner gibt
+      sections.push(
+        h('section', { class: 'section' },
+          h('h2', { class: 'label' }, 'Namen'),
+          h('div', { class: 'stack stack--tight' },
+            nameField(0, solo ? 'das bist du' : cfg.mode === 'gegenueber' ? 'sitzt unten' : 'links'),
+            solo ? null : nameField(1, cfg.mode === 'gegenueber' ? 'sitzt gegenüber' : 'rechts')
+          )
         )
-      ),
+      );
+    }
+    sections.push(
       h('p', { class: 'muted small' }, duoModes.length ? `Format: ${FORMAT_TEXT[orientation]}. Wer beginnt, wechselt nach jedem Spiel.` : `Format: ${FORMAT_TEXT[orientation]}.`)
     );
 

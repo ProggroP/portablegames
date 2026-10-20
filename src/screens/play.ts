@@ -162,7 +162,8 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
         h('span', { class: 'play-bar__title' }, def.name),
         h('span', { class: 'play-bar__actions' }, iconButton('help', 'Kurzanleitung', () => showRules(true)), flip, iconButton('restart', 'Neues Spiel', restart))
       ),
-      h('div', { class: 'hud-row' }, huds[0].el, soloOnly ? null : huds[1].el),
+      // Ohne Gegner braucht es keine Spieleranzeige, Fortschritt und Zeit stehen in der Meldung.
+      ...(soloOnly ? [] : [h('div', { class: 'hud-row' }, huds[0].el, huds[1].el)]),
       boardWrap,
       h('div', { class: 'play-foot' }, message, againBtn)
     );
@@ -201,7 +202,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
 
     // Nebeneinander im Querformat stehen Leiste und Anzeigen links neben dem Brett.
     const sidePanel = !facing && shape === 'landscape';
-    const reservedH = facing ? 2 * HUD_MIN[shape] : sidePanel ? 0 : BAR_H + ROW_H[shape] + MSG_H;
+    const reservedH = facing ? 2 * HUD_MIN[shape] : sidePanel ? 0 : BAR_H + (soloOnly ? 0 : ROW_H[shape]) + MSG_H;
     const availW = g.width - (sidePanel ? SIDE_W + 3 * PAD : 2 * PAD);
     const availH = g.height - reservedH - 2 * PAD;
     const [bw, bh] = fitBoard(availW, availH, def.aspect, def.aspectMax ?? def.aspect);
