@@ -49,7 +49,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   function resultText(st: GameStatus): string {
     const w = st.finished?.winner;
     if (w === undefined) return '';
-    if (soloOnly) return w === 0 ? 'Geschafft!' : 'Leider verloren.';
+    if (soloOnly) return st.finished?.label ? `${st.finished.label}.` : w === 0 ? 'Geschafft!' : 'Leider verloren.';
     if (w === null) return 'Unentschieden.';
     if (mode === 'allein') return w === 0 ? 'Du hast gewonnen!' : 'Der Computer hat gewonnen.';
     return `${players[w].name} gewinnt!`;
@@ -80,7 +80,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
         score.textContent = st.scores ? String(st.scores[i]) : '';
         let text = '';
         if (soloOnly) {
-          text = st.finished ? (st.finished.winner === 0 ? 'Geschafft!' : 'Verloren') : '';
+          text = st.finished ? st.finished.label ?? (st.finished.winner === 0 ? 'Geschafft!' : 'Verloren') : '';
         } else if (st.finished) {
           const w = st.finished.winner;
           text = w === null ? 'Unentschieden' : w === i ? 'Gewonnen!' : 'Verloren';

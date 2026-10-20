@@ -1976,3 +1976,125 @@ a.game-card:hover {
   padding: 0 12px;
   color: var(--muted);
 }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Klötzchen */
+.kz {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kz-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  gap: 10px;
+}
+.kz-well {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+}
+.kz-grid {
+  width: min(100cqw, calc(100cqh * 10 / 18));
+  aspect-ratio: 10 / 18;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(18, 1fr);
+  gap: 1px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+}
+.kz-cell {
+  border-radius: 3px;
+  background: #171922;
+  border: 2px solid transparent;
+}
+.kz-cell.is-block {
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 25%);
+}
+.kz-cell.is-ghost {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.8;
+}
+.kz-side {
+  flex: 0 0 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kz-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.kz-next {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kz-mini {
+  width: 52px;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  gap: 1px;
+}
+.kz-mini__cell {
+  border-radius: 2px;
+}
+.kz-stat {
+  font-size: 13px;
+  color: var(--text-2);
+}
+.kz-controls {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.4fr;
+  gap: 8px;
+}
+.kz-btn {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.kz-btn--drop {
+  background: var(--p1);
+  border-color: var(--p1);
+  color: var(--on-accent);
+}
+.kz-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn--install {
+  flex: 0 0 auto;
+  border-color: var(--p1);
+  color: var(--text);
+  font-size: 14px;
+}

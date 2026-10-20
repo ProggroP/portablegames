@@ -18,7 +18,7 @@ const GAMES = {
   gomoku: ['gegenueber', 'nebeneinander', 'allein'], fallreihe: ['nebeneinander', 'allein'],
   paarweise: ['gegenueber', 'nebeneinander', 'allein'], fuenfwuerfel: ['gegenueber', 'nebeneinander', 'allein'],
   solitaer: ['allein'], feldraeumer: ['allein'], neunerfeld: ['allein'],
-  schach: ['gegenueber', 'nebeneinander', 'allein']
+  schach: ['gegenueber', 'nebeneinander', 'allein'], kloetzchen: ['allein']
 };
 const LABEL = { gegenueber: 'Gegenüber', nebeneinander: 'Nebeneinander' };
 (async () => {

@@ -21,8 +21,11 @@ export interface GameStatus {
   message?: string;
   /** Anleitung nur für den Spieler am Zug, zum Beispiel „Setze einen Stein“. */
   hint?: string;
-  /** Gesetzt, sobald das Spiel vorbei ist. winner null bedeutet unentschieden. */
-  finished?: { winner: PlayerIndex | null };
+  /**
+   * Gesetzt, sobald das Spiel vorbei ist. winner null bedeutet unentschieden.
+   * label ersetzt bei Spielen für eine Person „Geschafft!“ oder „Verloren“, etwa „Spielende“.
+   */
+  finished?: { winner: PlayerIndex | null; label?: string };
 }
 
 export interface GameContext {

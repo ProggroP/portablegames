@@ -107,5 +107,13 @@ export const HOW_TO: Record<string, string[]> = {
     'Rochade, en passant und Bauernumwandlung werden angeboten, sobald sie erlaubt sind. Bei der Umwandlung wählst du die neue Figur.',
     'Unentschieden: Patt, dreimal dieselbe Stellung, zu wenig Material oder 50 Züge ohne Bauernzug und ohne Schlagen.',
     'Die Zahl neben deinem Namen ist der Wert der Figuren, die du geschlagen hast (Bauer 1, Springer und Läufer 3, Turm 5, Dame 9).'
+  ],
+  kloetzchen: [
+    'Ziel: möglichst viele volle Reihen bilden. Eine volle Reihe verschwindet und bringt Punkte, vier auf einmal am meisten.',
+    'Ohne Zeitdruck: Die Steine fallen nicht von selbst. Schieb und dreh in Ruhe, dann tippst du auf „Ablegen“.',
+    'Mit dem Pfeil nach unten geht der Stein eine Reihe tiefer. Geht es nicht weiter, wird er dort abgelegt.',
+    'Tippen aufs Spielfeld dreht den Stein ebenfalls. Auf dem Laptop gehen auch die Pfeiltasten und die Leertaste.',
+    'Das Spiel endet, wenn oben kein Platz mehr für den nächsten Stein ist.',
+    'Leicht zeigt drei kommende Steine und wo der Stein landet. Mittel zeigt einen. Schwer zeigt einen, ohne Landehilfe und mit rein zufälliger Steinfolge.'
   ]
 };

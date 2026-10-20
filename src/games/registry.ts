@@ -8,6 +8,7 @@ import { createFeldraeumer } from './feldraeumer/view';
 import { createFuenfWuerfel } from './fuenfwuerfel/view';
 import { createGomoku } from './gomoku/view';
 import { createKaesekaestchen } from './kaesekaestchen/view';
+import { createKloetzchen } from './kloetzchen/view';
 import { createMancala } from './mancala/view';
 import { createMuehle } from './muehle/view';
 import { createNeunerfeld } from './neunerfeld/view';
@@ -45,7 +46,8 @@ export const GAMES: GameDef[] = [
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.85, icon: '_W_WOW_W_', create: createFeldraeumer },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 0.68, aspectMax: 0.82, icon: 'W_W_B_W_W', create: createNeunerfeld },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.78, icon: 'WOWW_WOWO', create: createSolitaer },
-  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB', create: createSchach }
+  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB', create: createSchach },
+  { id: 'kloetzchen', name: 'Klötzchen', kind: 'Reihen füllen, ohne Zeitdruck', seating: { allein: 'portrait' }, aspect: 0.6, aspectMax: 0.8, icon: 'O__OB_BBB', create: createKloetzchen }
 ];
 
 for (const g of GAMES) g.howTo = HOW_TO[g.id];

@@ -1,4 +1,5 @@
 import { h } from '../core/dom';
+import { canInstall, install, onInstallChange } from '../core/install';
 import { load, save } from '../core/storage';
 import { GAMES, playerRange } from '../games/registry';
 import type { GameDef } from '../core/types';
@@ -74,7 +75,7 @@ function gameCard(g: GameDef): HTMLElement {
     : h('div', { class: 'game-card is-soon', 'aria-disabled': 'true' }, ...body);
 }
 
-export function homeScreen(root: HTMLElement): void {
+export function homeScreen(root: HTMLElement): () => void {
   let filter = load<{ filter: Filter }>('home', { filter: 'alle' }).filter;
 
   const filterButtons = FILTERS.map(([key, label]) =>
@@ -99,13 +100,22 @@ export function homeScreen(root: HTMLElement): void {
     grid.replaceChildren(...list.map(gameCard));
   }
 
+  // Nur sichtbar, wenn der Browser die Installation gerade anbietet
+  const installButton = h('button', { class: 'btn btn--install', type: 'button', hidden: true, onclick: () => void install() }, 'App installieren');
+  const refreshInstall = (): void => {
+    installButton.hidden = !canInstall();
+  };
+  const stopListening = onInstallChange(refreshInstall);
+  refreshInstall();
+
   root.append(
     h('div', { class: 'page' },
       h('header', { class: 'page__header' },
         h('div', {},
           h('h1', { class: 'title' }, 'PortableGames'),
           h('p', { class: 'muted' }, 'Klassiker für dich allein oder zu zweit.')
-        )
+        ),
+        installButton
       ),
       h('section', { class: 'section' },
         h('h2', { class: 'label' }, 'Wer spielt?'),
@@ -121,4 +131,5 @@ export function homeScreen(root: HTMLElement): void {
     )
   );
   render();
+  return stopListening;
 }

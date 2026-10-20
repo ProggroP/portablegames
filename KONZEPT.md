@@ -49,6 +49,7 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Solitär | Klondike | | | spielbar, nur allein, Antippen statt Ziehen |
 | Feldräumer | Minesweeper | | | spielbar, nur allein, höchstens 9 Spalten |
 | Neunerfeld | Sudoku | | | spielbar, nur allein, Rätsel werden in der App erzeugt |
+| Klötzchen | Tetris | | | spielbar, nur allein, ohne Zeitdruck: Steine fallen nicht von selbst |
 
 ## Regelvarianten
 
@@ -73,6 +74,7 @@ Allgemeine Spielnamen (Schach, Mühle, Dame, Backgammon, Reversi, Mancala, Tic-T
 - **Vier gewinnt** (Hasbro), **Memory** (Ravensburger), **Kniffel** (Schmidt Spiele): geschützte Marken.
 - **Sudoku**: in Japan eine Marke von Nikoli. Da die Website weltweit erreichbar ist, wird vorsichtshalber ein eigener Name verwendet.
 - **Minesweeper**: Produktname von Microsoft, keine Eintragung gefunden, aber vorsichtshalber umbenannt.
+- **Tetris**: Marke von The Tetris Company. Klötzchen hat eigenen Namen und eigene Farben, weil auch eine zu enge Nachahmung des Aussehens problematisch sein kann.
 - **Kalaha / Kalah** war in den USA bis 2002 eine Marke. „Mancala“ ist der allgemeine Name der Spielfamilie.
 
 Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine Einschätzung, keine Rechtsberatung.

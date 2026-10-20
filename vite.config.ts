@@ -12,6 +12,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'lizenzen.txt'],
       manifest: {
+        // Feste Kennung der App. Entspricht der bisherigen, aus start_url abgeleiteten Kennung (/spiele/).
+        id: './',
         name: 'PortableGames',
         short_name: 'PortableGames',
         description: 'Klassische Spiele für ein Smartphone, allein oder zu zweit.',

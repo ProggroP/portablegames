@@ -2,6 +2,7 @@ import '@fontsource/fredoka/500.css';
 import '@fontsource/fredoka/600.css';
 import './styles.css';
 import { registerSW } from 'virtual:pwa-register';
+import './core/install';
 import { findGame } from './games/registry';
 import { homeScreen } from './screens/home';
 import { playScreen } from './screens/play';
@@ -24,7 +25,7 @@ function route(): void {
 
   if (def?.create && action === 'los') cleanup = playScreen(app, def);
   else if (def?.create) setupScreen(app, def);
-  else homeScreen(app);
+  else cleanup = homeScreen(app);
 }
 
 window.addEventListener('hashchange', route);
