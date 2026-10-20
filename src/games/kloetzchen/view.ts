@@ -31,6 +31,16 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
   let state: BlockState = startState(level);
   let message: string | undefined;
 
+  // Fallgeschwindigkeit: Aus heißt ohne Zeitdruck. Die Wahl gilt für alle Stufen und wird gemerkt.
+  const TEMPI = [
+    { key: 'aus', label: 'Aus', ms: 0 },
+    { key: 'langsam', label: 'Langsam', ms: 1000 },
+    { key: 'mittel', label: 'Mittel', ms: 550 }
+  ];
+  let tempo = load<{ tempo: string }>('kloetzchen:tempo', { tempo: 'aus' }).tempo;
+  let paused = false;
+  let fallTimer = 0;
+
   const cells = Array.from({ length: COLS * ROWS }, () => h('span', { class: 'kz-cell' }));
   const grid = h('div', { class: 'kz-grid', 'aria-hidden': 'true' }, ...cells);
   grid.addEventListener('click', () => act(() => rotate(state)));
@@ -51,10 +61,30 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
     button('Ablegen', arrow('drop'), () => down(true), 'kz-btn--drop')
   );
 
+  const tempoButtons = TEMPI.map((t) =>
+    h('button', {
+      class: 'kz-tempo__btn',
+      type: 'button',
+      onclick: () => {
+        tempo = t.key;
+        save('kloetzchen:tempo', { tempo });
+        scheduleFall();
+        update();
+      }
+    }, t.label)
+  );
   const element = h('div', { class: 'kz' },
     h('div', { class: 'kz-main' },
       h('div', { class: 'kz-well' }, grid),
-      h('div', { class: 'kz-side' }, h('p', { class: 'kz-label' }, 'Als Nächstes'), previews, scoreEl, linesEl, bestEl)
+      h('div', { class: 'kz-side' },
+        h('p', { class: 'kz-label' }, 'Als Nächstes'),
+        previews,
+        scoreEl,
+        linesEl,
+        bestEl,
+        h('p', { class: 'kz-label' }, 'Tempo'),
+        h('div', { class: 'kz-tempo', role: 'group', 'aria-label': 'Fallgeschwindigkeit' }, ...tempoButtons)
+      )
     ),
     controls,
     status
@@ -103,6 +133,7 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
     linesEl.textContent = `Reihen ${state.lines}`;
     bestEl.textContent = `Bestwert ${best}`;
     controls.querySelectorAll('button').forEach((b) => ((b as HTMLButtonElement).disabled = state.over));
+    tempoButtons.forEach((b, k) => b.setAttribute('aria-pressed', String(TEMPI[k].key === tempo)));
   }
 
   function report(): void {
@@ -115,7 +146,10 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
       });
       return;
     }
-    ctx.report({ current: 0, message, hint: 'Schieben und drehen in Ruhe, dann ablegen. Tippen aufs Feld dreht auch.' });
+    const hint = tempoMs()
+      ? 'Die Steine fallen von selbst. Schieben, drehen, ablegen.'
+      : 'Schieben und drehen in Ruhe, dann ablegen. Tippen aufs Feld dreht auch.';
+    ctx.report({ current: 0, message, hint });
   }
 
   function update(): void {
@@ -143,6 +177,19 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
     update();
   }
 
+  const tempoMs = (): number => TEMPI.find((t) => t.key === tempo)?.ms ?? 0;
+
+  /** Lässt den Stein im gewählten Tempo fallen. Kommt er nicht weiter, wird er abgelegt. */
+  function scheduleFall(): void {
+    window.clearTimeout(fallTimer);
+    const ms = tempoMs();
+    if (!ms || state.over) return;
+    fallTimer = window.setTimeout(() => {
+      if (!paused && document.visibilityState === 'visible') down(false);
+      scheduleFall();
+    }, ms);
+  }
+
   // Tastatur für Laptop und Desktop
   const onKey = (ev: KeyboardEvent): void => {
     const keys: Record<string, () => void> = {
@@ -160,6 +207,16 @@ export function createKloetzchen(_host: HTMLElement, ctx: GameContext): GameInst
   window.addEventListener('keydown', onKey);
 
   update();
+  scheduleFall();
 
-  return { element, destroy: () => window.removeEventListener('keydown', onKey) };
+  return {
+    element,
+    destroy: () => {
+      window.removeEventListener('keydown', onKey);
+      window.clearTimeout(fallTimer);
+    },
+    setPaused: (p) => {
+      paused = p;
+    }
+  };
 }

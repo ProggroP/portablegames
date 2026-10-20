@@ -2,7 +2,7 @@
 
 Klassische Spiele für ein Smartphone, allein gegen den Computer oder zu zweit an einem Gerät, gegenüber oder nebeneinander. Die App ist eine PWA und funktioniert nach der Installation auch offline.
 
-Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon**, **Air-Hockey**, **Gomoku**, **Fallreihe**, **Paarweise**, **Fünf Würfel**, **Solitär**, **Feldräumer**, **Neunerfeld**, **Schach** und **Klötzchen**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
+Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon**, **Air-Hockey**, **Gomoku**, **Fallreihe**, **Paarweise**, **Fünf Würfel**, **Solitär**, **Feldräumer**, **Neunerfeld**, **Schach**, **Klötzchen** und **Ausparken**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
 
 ## Entwickeln
 

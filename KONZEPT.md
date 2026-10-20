@@ -49,7 +49,8 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Solitär | Klondike | | | spielbar, nur allein, Antippen statt Ziehen |
 | Feldräumer | Minesweeper | | | spielbar, nur allein, höchstens 9 Spalten |
 | Neunerfeld | Sudoku | | | spielbar, nur allein, Rätsel werden in der App erzeugt |
-| Klötzchen | Tetris | | | spielbar, nur allein, ohne Zeitdruck: Steine fallen nicht von selbst |
+| Klötzchen | Tetris | | | spielbar, nur allein, Tempo wählbar: Aus (ohne Zeitdruck), Langsam, Mittel |
+| Ausparken | Rush Hour | | | spielbar, nur allein, 90 vorab geprüfte Rätsel |
 
 ## Regelvarianten
 
@@ -65,6 +66,8 @@ Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete d
 - **Feldräumer:** Der erste Tipp ist immer sicher. Leicht 8×10 mit 10 Minen, Mittel 9×12 mit 18, Schwer 9×14 mit 28.
 - **Neunerfeld:** Jedes Rätsel hat genau eine Lösung. Vorgegeben sind etwa 40 (Leicht), 32 (Mittel) oder 26 Zahlen (Schwer). Doppelte Zahlen werden angezeigt, falsche, aber regelkonforme Zahlen nicht.
 - **Schach:** FIDE-Regeln mit Rochade, en passant und Umwandlung. Remis bei Patt, dreifacher Stellungswiederholung, ungenügendem Material und nach 50 Zügen ohne Bauernzug und Schlagen. Wer beginnt, spielt Weiß.
+- **Klötzchen:** Ohne Zeitdruck fallen die Steine nicht von selbst. Mit Tempo „Langsam“ (1 Reihe pro Sekunde) oder „Mittel“ (knapp 2 pro Sekunde) fallen sie, und ein Stein, der nicht weiterkommt, bleibt liegen. Die Wahl gilt für alle Stufen.
+- **Ausparken:** Parkplatz 6×6, Ausfahrt rechts in der dritten Reihe. Ein Zug verschiebt ein Fahrzeug beliebig weit. Direkt aufeinanderfolgende Verschiebungen desselben Fahrzeugs zählen als ein Zug. Je Stufe 30 Rätsel, die kürzeste Lösung braucht 4 bis 8 (Leicht), 9 bis 13 (Mittel) oder 16 bis 23 Züge (Schwer). Erzeugt und geprüft mit `scripts/generate-ausparken.ts`.
 - **Backgammon:** Standardregeln ohne Verdopplungswürfel und ohne Gammon-Wertung. Beide Würfel müssen genutzt werden, wenn es geht, sonst der höhere. Wer beginnt, wechselt von Spiel zu Spiel, es gibt keinen Eröffnungswurf.
 
 ## Namen
@@ -75,6 +78,7 @@ Allgemeine Spielnamen (Schach, Mühle, Dame, Backgammon, Reversi, Mancala, Tic-T
 - **Sudoku**: in Japan eine Marke von Nikoli. Da die Website weltweit erreichbar ist, wird vorsichtshalber ein eigener Name verwendet.
 - **Minesweeper**: Produktname von Microsoft, keine Eintragung gefunden, aber vorsichtshalber umbenannt.
 - **Tetris**: Marke von The Tetris Company. Klötzchen hat eigenen Namen und eigene Farben, weil auch eine zu enge Nachahmung des Aussehens problematisch sein kann.
+- **Rush Hour**: Marke von ThinkFun (heute Ravensburger). Ausparken hat eigenen Namen, eigene Rätsel und eigene Farben.
 - **Kalaha / Kalah** war in den USA bis 2002 eine Marke. „Mancala“ ist der allgemeine Name der Spielfamilie.
 
 Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine Einschätzung, keine Rechtsberatung.

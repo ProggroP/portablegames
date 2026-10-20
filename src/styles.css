@@ -2063,6 +2063,27 @@ a.game-card:hover {
   font-size: 13px;
   color: var(--text-2);
 }
+.kz-tempo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.kz-tempo__btn {
+  min-height: 44px;
+  padding: 0 6px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.kz-tempo__btn[aria-pressed='true'] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--on-accent);
+}
 .kz-controls {
   flex: 0 0 auto;
   display: grid;
@@ -2097,4 +2118,132 @@ a.game-card:hover {
   border-color: var(--p1);
   color: var(--text);
   font-size: 14px;
+}
+
+/* Ausparken */
+.ap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ap-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+}
+.ap-frame {
+  position: relative;
+  width: min(100cqw - 44px, 100cqh);
+  aspect-ratio: 1;
+  margin-right: 22px;
+  padding: 4px;
+  border: 4px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+}
+/* Parkbuchten als feine Linien zwischen den Feldern */
+.ap-lot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, transparent calc(100% - 1px), var(--line) 0) 0 0 / calc(100% / 6) 100%,
+    linear-gradient(transparent calc(100% - 1px), var(--line) 0) 0 0 / 100% calc(100% / 6);
+  touch-action: none;
+}
+/* Lücke im Rahmen rechts neben der Ausfahrtzeile */
+.ap-exit {
+  position: absolute;
+  top: calc(4px + (100% - 8px) / 6 * var(--r));
+  right: -26px;
+  width: 26px;
+  height: calc((100% - 8px) / 6);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(90deg, var(--surface) 4px, transparent 4px);
+  color: var(--p1);
+}
+.ap-car {
+  position: absolute;
+  left: calc(var(--c) * 100% / 6 + 3px);
+  top: calc(var(--r) * 100% / 6 + 3px);
+  width: calc(var(--len) * 100% / 6 - 6px);
+  height: calc(100% / 6 - 6px);
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--car, var(--muted));
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.22);
+  cursor: grab;
+  touch-action: none;
+  transition: opacity 0.35s ease, translate 0.35s ease;
+}
+.ap-car.is-vertical {
+  width: calc(100% / 6 - 6px);
+  height: calc(var(--len) * 100% / 6 - 6px);
+  box-shadow: inset -4px 0 0 rgb(0 0 0 / 0.22);
+}
+/* Scheiben als dunkle Fläche */
+.ap-car::after {
+  content: '';
+  position: absolute;
+  inset: 22% 18% 22% 58%;
+  border-radius: 5px;
+  background: rgb(18 19 26 / 0.45);
+}
+.ap-car.is-truck::after {
+  inset: 22% 8% 22% 72%;
+}
+.ap-car.is-vertical::after {
+  inset: 58% 22% 18% 22%;
+}
+.ap-car.is-vertical.is-truck::after {
+  inset: 72% 22% 8% 22%;
+}
+.ap-car.is-target {
+  background: var(--p1);
+}
+.ap-car.is-selected {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+  z-index: 1;
+}
+.ap-car.is-out {
+  translate: 60% 0;
+  opacity: 0;
+}
+.ap-car:disabled {
+  cursor: default;
+}
+.ap-controls {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.6fr 1.6fr;
+  gap: 8px;
+}
+.ap-btn {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.ap-tool {
+  min-height: 52px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+.ap-btn:disabled,
+.ap-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
 }

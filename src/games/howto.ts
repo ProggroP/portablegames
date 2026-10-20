@@ -111,9 +111,17 @@ export const HOW_TO: Record<string, string[]> = {
   kloetzchen: [
     'Ziel: möglichst viele volle Reihen bilden. Eine volle Reihe verschwindet und bringt Punkte, vier auf einmal am meisten.',
     'Ohne Zeitdruck: Die Steine fallen nicht von selbst. Schieb und dreh in Ruhe, dann tippst du auf „Ablegen“.',
+    'Wer es spannender mag, stellt rechts unter „Tempo“ langsames oder mittleres Fallen ein. Kommt ein Stein nicht weiter, bleibt er liegen.',
     'Mit dem Pfeil nach unten geht der Stein eine Reihe tiefer. Geht es nicht weiter, wird er dort abgelegt.',
     'Tippen aufs Spielfeld dreht den Stein ebenfalls. Auf dem Laptop gehen auch die Pfeiltasten und die Leertaste.',
     'Das Spiel endet, wenn oben kein Platz mehr für den nächsten Stein ist.',
     'Leicht zeigt drei kommende Steine und wo der Stein landet. Mittel zeigt einen. Schwer zeigt einen, ohne Landehilfe und mit rein zufälliger Steinfolge.'
+  ],
+  ausparken: [
+    'Ziel: Dein blaues Auto fährt rechts durch die Lücke im Rand aus dem Parkplatz.',
+    'Autos und Laster fahren nur vor und zurück, nie seitwärts. Zieh sie mit dem Finger, so weit Platz ist.',
+    'Du kannst ein Fahrzeug auch antippen und mit den Pfeilen unten schieben.',
+    'Jedes Verschieben zählt als ein Zug, egal wie weit. Unter der Bestlösung steht, wie viele Züge es mindestens braucht.',
+    'Jede Stufe hat 30 Rätsel. Nach dem Lösen kommt mit „Nochmal“ das nächste, „Überspringen“ springt direkt weiter.'
   ]
 };

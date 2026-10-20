@@ -1,6 +1,7 @@
 import type { GameDef } from '../core/types';
 import { HOW_TO } from './howto';
 import { createAirHockey } from './airhockey/view';
+import { createAusparken } from './ausparken/view';
 import { createBackgammon } from './backgammon/view';
 import { createDame } from './dame/view';
 import { createFallreihe } from './fallreihe/view';
@@ -47,7 +48,8 @@ export const GAMES: GameDef[] = [
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 0.68, aspectMax: 0.82, icon: 'W_W_B_W_W', create: createNeunerfeld },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.78, icon: 'WOWW_WOWO', create: createSolitaer },
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB', create: createSchach },
-  { id: 'kloetzchen', name: 'Klötzchen', kind: 'Reihen füllen, ohne Zeitdruck', seating: { allein: 'portrait' }, aspect: 0.6, aspectMax: 0.8, icon: 'O__OB_BBB', create: createKloetzchen }
+  { id: 'kloetzchen', name: 'Klötzchen', kind: 'Reihen füllen, in deinem Tempo', seating: { allein: 'portrait' }, aspect: 0.6, aspectMax: 0.8, icon: 'O__OB_BBB', create: createKloetzchen },
+  { id: 'ausparken', name: 'Ausparken', kind: 'Autos verschieben, rausfahren', seating: { allein: 'portrait' }, aspect: 0.72, aspectMax: 0.9, icon: 'O_W_BB_W_', create: createAusparken }
 ];
 
 for (const g of GAMES) g.howTo = HOW_TO[g.id];
