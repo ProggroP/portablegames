@@ -1,6 +1,8 @@
 import type { GameDef } from '../core/types';
+import { createBackgammon } from './backgammon/view';
 import { createDame } from './dame/view';
 import { createKaesekaestchen } from './kaesekaestchen/view';
+import { createMancala } from './mancala/view';
 import { createMuehle } from './muehle/view';
 import { createReversi } from './reversi/view';
 import { createTicTacToe } from './tictactoe/view';
@@ -14,11 +16,11 @@ export const GAMES: GameDef[] = [
   { id: 'muehle', name: 'Mühle', kind: 'Dreierreihen bilden', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BWBW_WOWO', create: createMuehle },
   { id: 'dame', name: 'Dame', kind: 'Diagonal ziehen und schlagen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B_B_B_O_O', create: createDame },
   { id: 'kaesekaestchen', name: 'Käsekästchen', kind: 'Linien ziehen, Kästchen schließen', seating: BOTH_PORTRAIT, aspect: 1, icon: 'BBO_BOWWO', create: createKaesekaestchen },
+  { id: 'mancala', name: 'Mancala', kind: 'Bohnen säen und ernten', seating: BOTH_LANDSCAPE, aspect: 2.2, aspectMax: 3.2, icon: 'OOO___BBB', create: createMancala },
+  { id: 'backgammon', name: 'Backgammon', kind: 'Würfeln und heimziehen', seating: BOTH_LANDSCAPE, aspect: 1.5, aspectMax: 2.6, icon: 'B_OB_OB_O', create: createBackgammon },
 
   // Geplant, noch nicht spielbar
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
-  { id: 'backgammon', name: 'Backgammon', kind: 'Würfeln und heimziehen', seating: BOTH_LANDSCAPE, aspect: 2, icon: 'B_OB_OB_O' },
-  { id: 'mancala', name: 'Mancala', kind: 'Bohnen säen und ernten', seating: BOTH_LANDSCAPE, aspect: 2.6, icon: 'OOO___BBB' },
   { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B' },
   { id: 'airhockey', name: 'Air-Hockey', kind: 'Puck ins Tor schießen', seating: { gegenueber: 'portrait', nebeneinander: 'landscape' }, aspect: 0.6, icon: '_O__W__B_' },
   { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 0.7, icon: 'B_B_O_O_W' },

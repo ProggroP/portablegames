@@ -11,6 +11,17 @@ const BAR_H = 56;
 const ROW_H = { portrait: 80, landscape: 64 };
 const MSG_H = 64;
 const PAD = 12;
+const SIDE_W = 230;
+
+/** Größtes Brett im verfügbaren Platz, mit einem Seitenverhältnis zwischen min und max. */
+function fitBoard(w: number, h: number, min: number, max: number): [number, number] {
+  w = Math.max(120, w);
+  h = Math.max(120, h);
+  const ratio = w / h;
+  if (ratio > max) return [h * max, h];
+  if (ratio < min) return [w, w / min];
+  return [w, h];
+}
 
 interface Hud {
   el: HTMLElement;
@@ -157,12 +168,15 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
 
     const shape = g.height >= g.width ? 'portrait' : 'landscape';
     stage.classList.toggle('is-landscape', shape === 'landscape');
-    const reserved = facing ? 2 * HUD_MIN[shape] : BAR_H + ROW_H[shape] + MSG_H;
-    const availW = g.width - 2 * PAD;
-    const availH = g.height - reserved - 2 * PAD;
-    const bw = Math.max(120, Math.min(availW, availH * def.aspect));
+
+    // Nebeneinander im Querformat stehen Leiste und Anzeigen links neben dem Brett.
+    const sidePanel = !facing && shape === 'landscape';
+    const reservedH = facing ? 2 * HUD_MIN[shape] : sidePanel ? 0 : BAR_H + ROW_H[shape] + MSG_H;
+    const availW = g.width - (sidePanel ? SIDE_W + 3 * PAD : 2 * PAD);
+    const availH = g.height - reservedH - 2 * PAD;
+    const [bw, bh] = fitBoard(availW, availH, def.aspect, def.aspectMax ?? def.aspect);
     boardWrap.style.width = `${Math.floor(bw)}px`;
-    boardWrap.style.height = `${Math.floor(bw / def.aspect)}px`;
+    boardWrap.style.height = `${Math.floor(bh)}px`;
   }
 
   // Nur Touch-Geräte werden gedreht. Ein Laptop-Bildschirm bleibt, wie er ist.

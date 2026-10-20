@@ -48,6 +48,8 @@ export interface GameDef {
   seating: Partial<Record<SeatMode, Orientation>>;
   /** Seitenverhältnis des Bretts (Breite durch Höhe). */
   aspect: number;
+  /** Optional: Bis zu diesem Verhältnis darf das Brett in die Breite wachsen. */
+  aspectMax?: number;
   /** 9 Zeichen für das 3x3-Symbol: B, O, W oder _ */
   icon: string;
   /** Fehlt bei Spielen, die noch geplant sind. */
