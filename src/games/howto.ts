@@ -84,5 +84,12 @@ export const HOW_TO: Record<string, string[]> = {
     'Wo du eine Mine vermutest, markierst du das Feld: lange drücken oder oben auf „Markieren“ umschalten.',
     'Stehen um eine Zahl schon genug Markierungen, tippe auf die Zahl. Dann werden die übrigen Nachbarn aufgedeckt.',
     'Mehr Schwierigkeit heißt größeres Feld und mehr Minen.'
+  ],
+  neunerfeld: [
+    'Ziel: alle leeren Felder so füllen, dass jede Zeile, jede Spalte und jeder dick umrandete 3×3-Block die Zahlen 1 bis 9 genau einmal enthält.',
+    'Tippe auf ein leeres Feld und dann unten auf eine Zahl. Nochmal dieselbe Zahl nimmt sie wieder heraus.',
+    'Doppelte Zahlen werden rot angezeigt.',
+    'Mit „Notizen“ merkst du dir mögliche Zahlen klein vor. Setzt du eine Zahl, verschwindet sie aus den Notizen der Nachbarn.',
+    'Jedes Rätsel hat genau eine Lösung. Mehr Schwierigkeit heißt weniger vorgegebene Zahlen.'
   ]
 };
