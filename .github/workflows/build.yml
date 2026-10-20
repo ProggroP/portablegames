@@ -1,7 +1,8 @@
 name: Build
 
 # Testet und baut die App bei jeder Änderung an main.
-# Das fertige Paket für den Webspace liegt danach im Lauf unter "Artifacts".
+# Das fertige Paket liegt danach im Lauf unter "Artifacts".
+# Sind die FTP-Zugangsdaten hinterlegt, wird es zusätzlich auf den Webspace geladen.
 
 on:
   push:
@@ -10,6 +11,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -28,3 +33,18 @@ jobs:
           name: portablegames-webspace
           path: dist
           include-hidden-files: true
+
+      - name: Auf den Webspace laden
+        env:
+          READY: ${{ secrets.FTP_SERVER != '' && secrets.FTP_USERNAME != '' && secrets.FTP_PASSWORD != '' && vars.FTP_DIR != '' }}
+        if: env.READY == 'true'
+        # v4.3.6, auf den Commit festgelegt, weil diese Aktion das FTP-Passwort erhält
+        uses: SamKirkland/FTP-Deploy-Action@a51268f67f6605236975928ae28b0f7e9971d50a
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ vars.FTP_DIR }}

@@ -48,6 +48,19 @@ Voraussetzungen und Hinweise:
 - Die Datei `.htaccess` gehört mit hoch. Sie beginnt mit einem Punkt und wird in manchen FTP-Programmen erst angezeigt, wenn versteckte Dateien eingeblendet sind. Sie wirkt nur auf Apache-Servern und sorgt für richtige Dateitypen und dafür, dass Updates ankommen.
 - Bei einem Update alle Dateien ersetzen. Alte Dateien in `assets/` dürfen gelöscht werden.
 
+### Automatisch per FTP
+
+Unter **Settings › Secrets and variables › Actions** eintragen:
+
+| Art | Name | Inhalt |
+|---|---|---|
+| Secret | `FTP_SERVER` | Server, zum Beispiel `www123.your-server.de` |
+| Secret | `FTP_USERNAME` | FTP-Benutzername |
+| Secret | `FTP_PASSWORD` | FTP-Passwort |
+| Variable | `FTP_DIR` | Zielordner mit `/` am Ende, zum Beispiel `/public_html/spiele/` |
+
+Sobald alle vier gesetzt sind, lädt jeder Push auf `main` die neue Version per FTPS hoch. Hochgeladen werden nur geänderte Dateien. Gelöscht wird nur, was die Veröffentlichung selbst hochgeladen hat.
+
 ## Lizenz
 
 MIT
