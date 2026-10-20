@@ -44,7 +44,7 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Käsekästchen | | Hoch | Hoch | spielbar, 5×5 Kästchen |
 | Air-Hockey | | Hoch | Quer | spielbar, Echtzeit mit Multitouch, auch allein gegen den Computer |
 | Paarweise | Memory | Hoch | Hoch | spielbar, 12 Paare, Motive ohne Oben und Unten |
-| Fünf Würfel | Kniffel | Hoch | Hoch | geplant, gegenüber mit eigenem Block pro Spieler |
+| Fünf Würfel | Kniffel | Hoch | Hoch | spielbar, gegenüber dreht sich der Block zum Spieler am Zug |
 | Fallreihe | Vier gewinnt | nicht möglich | Hoch | spielbar |
 | Solitär | Klondike | | | geplant, nur allein |
 | Feldräumer | Minesweeper | | | geplant, nur allein |
@@ -59,6 +59,7 @@ Viele Klassiker werden unterschiedlich gespielt. Die App verwendet verbreitete d
 - **Käsekästchen:** Wer ein Kästchen schließt, bekommt es und ist noch einmal dran.
 - **Mancala:** Kalah-Regeln mit 6 Mulden und je 4 Bohnen. Endet die Saat im eigenen Speicher, ist man noch einmal dran. Endet sie in einer leeren eigenen Mulde, wird die gegenüberliegende Mulde geschlagen, wenn dort Bohnen liegen. Ist eine Seite leer, bekommt jeder die Bohnen auf seiner Seite.
 - **Air-Hockey:** Wer zuerst 7 Tore schießt, gewinnt. Jeder Schläger bleibt in der eigenen Hälfte. Nach einem Tor hat der Gegner Anstoß. In den Ecken schiebt ein leichter Luftstrom einen langsamen Puck heraus, damit er nicht festklemmt.
+- **Fünf Würfel:** Bis zu drei Würfe pro Zug, 13 Zeilen, 35 Bonus ab 63 Punkten oben. Ohne Extrapunkte für weitere „Fünf Gleiche“.
 - **Backgammon:** Standardregeln ohne Verdopplungswürfel und ohne Gammon-Wertung. Beide Würfel müssen genutzt werden, wenn es geht, sonst der höhere. Wer beginnt, wechselt von Spiel zu Spiel, es gibt keinen Eröffnungswurf.
 
 ## Namen

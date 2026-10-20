@@ -123,7 +123,7 @@ export function createFuenfWuerfel(_host: HTMLElement, ctx: GameContext): GameIn
     const p = state.turn;
     const pts = scoreFor(state.dice, cat);
     state = choose(state, cat);
-    message = `${name(p)} trägt ${pts} bei ${CATEGORIES[cat].name} ein.`;
+    message = `${name(p)} trägt ${pts} ${pts === 1 ? 'Punkt' : 'Punkte'} bei „${CATEGORIES[cat].name}“ ein.`;
     update();
     scheduleComputer();
   }
