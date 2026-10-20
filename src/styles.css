@@ -1378,3 +1378,148 @@ a.game-card:hover {
     transition: none;
   }
 }
+
+/* Fünf Würfel */
+.fw {
+  --pc: var(--p1);
+  border-radius: 18px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.fw__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+.fw__inner.is-flipped {
+  transform: rotate(180deg);
+}
+.fw-owner {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pc);
+  text-align: center;
+}
+.fw-dice {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.fw-die {
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  padding: 6px;
+  border: 0;
+  border-radius: 18%;
+  background: var(--text);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.fw-die:disabled {
+  cursor: default;
+}
+.fw-die.is-blank {
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 2px var(--line-strong);
+}
+.fw-die.is-held {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 3px var(--pc), 0 6px 0 -2px var(--pc);
+}
+.fw-pip.is-on {
+  border-radius: 50%;
+  background: var(--on-accent);
+  transform: scale(0.8);
+}
+.fw-roll {
+  min-height: 48px;
+}
+.fw-roll:disabled {
+  background: var(--surface-2);
+  border-color: var(--surface-2);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.fw-sheet {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.fw-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fw-row {
+  flex: 1 1 0;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.fw-row:disabled {
+  cursor: default;
+}
+.fw-row__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fw-row__value {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+.fw-row.is-option .fw-row__value {
+  color: var(--pc);
+}
+.fw-row.is-option:not(:disabled) {
+  border-color: color-mix(in srgb, var(--pc) 55%, var(--line));
+}
+.fw-row.is-zero .fw-row__value {
+  color: var(--muted);
+}
+.fw-row.is-filled {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+.fw-row.is-filled .fw-row__value {
+  color: var(--text);
+}
+.fw-row.is-picked {
+  box-shadow: inset 0 0 0 2px var(--pc);
+}
+.fw-row--info {
+  cursor: default;
+  background: transparent;
+  border-style: dashed;
+  color: var(--muted);
+}
+.fw-row--sum {
+  border-style: solid;
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fw-die {
+    transition: none;
+  }
+}

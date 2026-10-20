@@ -4,6 +4,7 @@ import { createAirHockey } from './airhockey/view';
 import { createBackgammon } from './backgammon/view';
 import { createDame } from './dame/view';
 import { createFallreihe } from './fallreihe/view';
+import { createFuenfWuerfel } from './fuenfwuerfel/view';
 import { createGomoku } from './gomoku/view';
 import { createKaesekaestchen } from './kaesekaestchen/view';
 import { createMancala } from './mancala/view';
@@ -36,10 +37,10 @@ export const GAMES: GameDef[] = [
   { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B', create: createGomoku },
   { id: 'fallreihe', name: 'Fallreihe', kind: 'Steine fallen lassen, vier verbinden', seating: { nebeneinander: 'portrait', allein: 'portrait' }, aspect: 7 / 6, icon: '___OB_BOO', create: createFallreihe },
   { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 4 / 6, icon: 'B_B_O_O_W', create: createPaarweise },
+  { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.62, aspectMax: 0.85, icon: 'W_W_W_W_W', create: createFuenfWuerfel },
 
   // Geplant, noch nicht spielbar
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
-  { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.6, icon: 'W_W_W_W_W' },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.6, icon: 'WOWW_WOWO' },
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.6, icon: '_W_WOW_W_' },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 1, icon: 'W_W_B_W_W' }

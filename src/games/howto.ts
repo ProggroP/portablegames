@@ -68,5 +68,13 @@ export const HOW_TO: Record<string, string[]> = {
     'Deck nacheinander zwei Karten auf. Zeigen sie dasselbe Motiv, gehört das Paar dir und du bist noch einmal dran.',
     'Sonst werden beide wieder umgedreht, und der andere ist dran.',
     'Merk dir, wo welche Motive liegen.'
+  ],
+  fuenfwuerfel: [
+    'Ziel: am Ende die meisten Punkte auf deinem Block.',
+    'Pro Zug darfst du bis zu dreimal würfeln. Tippe Würfel an, um sie festzuhalten, und würfle den Rest neu.',
+    'Danach trägst du das Ergebnis in eine freie Zeile ein. Passt nichts, musst du eine Zeile mit 0 Punkten füllen.',
+    'Oben zählen die passenden Augen. Ab 63 Punkten oben gibt es 35 Bonus.',
+    'Unten: Dreier- und Viererpasch zählen alle Augen, Full House (drei und zwei Gleiche) 25, kleine Straße (vier in Folge) 30, große Straße (fünf in Folge) 40, Fünf Gleiche 50, Chance alle Augen.',
+    'Nach 13 Runden ist der Block voll, und es wird gezählt.'
   ]
 };
