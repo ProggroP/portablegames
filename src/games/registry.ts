@@ -1,10 +1,14 @@
 import type { GameDef } from '../core/types';
+import { HOW_TO } from './howto';
 import { createAirHockey } from './airhockey/view';
 import { createBackgammon } from './backgammon/view';
 import { createDame } from './dame/view';
+import { createFallreihe } from './fallreihe/view';
+import { createGomoku } from './gomoku/view';
 import { createKaesekaestchen } from './kaesekaestchen/view';
 import { createMancala } from './mancala/view';
 import { createMuehle } from './muehle/view';
+import { createPaarweise } from './paarweise/view';
 import { createReversi } from './reversi/view';
 import { createTicTacToe } from './tictactoe/view';
 
@@ -29,17 +33,19 @@ export const GAMES: GameDef[] = [
     icon: '_O__W__B_',
     create: createAirHockey
   },
+  { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B', create: createGomoku },
+  { id: 'fallreihe', name: 'Fallreihe', kind: 'Steine fallen lassen, vier verbinden', seating: { nebeneinander: 'portrait', allein: 'portrait' }, aspect: 7 / 6, icon: '___OB_BOO', create: createFallreihe },
+  { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 4 / 6, icon: 'B_B_O_O_W', create: createPaarweise },
 
   // Geplant, noch nicht spielbar
   { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB' },
-  { id: 'gomoku', name: 'Gomoku', kind: 'Fünf in einer Reihe', seating: BOTH_PORTRAIT, aspect: 1, icon: 'B___B___B' },
-  { id: 'paarweise', name: 'Paarweise', kind: 'Kartenpaare finden', seating: BOTH_PORTRAIT, aspect: 0.7, icon: 'B_B_O_O_W' },
   { id: 'fuenfwuerfel', name: 'Fünf Würfel', kind: 'Würfelkombinationen sammeln', seating: BOTH_PORTRAIT, aspect: 0.6, icon: 'W_W_W_W_W' },
-  { id: 'fallreihe', name: 'Fallreihe', kind: 'Steine fallen lassen, vier verbinden', seating: { nebeneinander: 'portrait', allein: 'portrait' }, aspect: 7 / 6, icon: '___OB_BOO' },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.6, icon: 'WOWW_WOWO' },
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.6, icon: '_W_WOW_W_' },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 1, icon: 'W_W_B_W_W' }
 ];
+
+for (const g of GAMES) g.howTo = HOW_TO[g.id];
 
 export function findGame(id: string): GameDef | undefined {
   return GAMES.find((g) => g.id === id);

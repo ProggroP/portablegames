@@ -65,6 +65,15 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
     const solo = cfg.mode === 'allein';
     const sections: HTMLElement[] = [];
 
+    if (def.howTo?.length) {
+      sections.push(
+        h('details', { class: 'howto section' },
+          h('summary', { class: 'howto__summary' }, 'So geht’s'),
+          h('ul', { class: 'howto__list' }, ...def.howTo.map((line) => h('li', {}, line)))
+        )
+      );
+    }
+
     if (canSolo && duoModes.length) {
       sections.push(
         h('section', { class: 'section' },
@@ -89,7 +98,10 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
                 render();
               })
             : h('p', { class: 'strong' }, SEAT_TEXT[mode].label),
-          h('p', { class: 'muted small' }, SEAT_TEXT[mode].desc)
+          h('p', { class: 'muted small' }, SEAT_TEXT[mode].desc),
+          mode === 'gegenueber'
+            ? h('p', { class: 'muted small tip' }, 'Tipp: Schalte die automatische Drehung des Handys aus, wenn es flach auf dem Tisch liegt. Die App richtet sich selbst aus.')
+            : null
         )
       );
     }

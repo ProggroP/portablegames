@@ -2,7 +2,7 @@
 
 Klassische Spiele für ein Smartphone, allein gegen den Computer oder zu zweit an einem Gerät, gegenüber oder nebeneinander. Die App ist eine PWA und funktioniert nach der Installation auch offline.
 
-Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon** und **Air-Hockey**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
+Spielbar sind bisher **Tic-Tac-Toe**, **Reversi**, **Mühle**, **Dame**, **Käsekästchen**, **Mancala**, **Backgammon**, **Air-Hockey**, **Gomoku**, **Fallreihe** und **Paarweise**. Weitere Spiele und die Ideen dahinter stehen in [KONZEPT.md](KONZEPT.md).
 
 ## Entwickeln
 
@@ -35,6 +35,7 @@ src/
 1. `src/games/<spiel>/logic.ts` mit den Regeln und einem `computerMove` schreiben, dazu `logic.test.ts`.
 2. `view.ts` mit einer Funktion `create<Spiel>(host, ctx)` schreiben. Sie liefert das Brett als `element` und meldet den Spielstand über `ctx.report(...)`.
 3. In `src/games/registry.ts` den Eintrag ergänzen: Sitzordnungen mit Format, Seitenverhältnis des Bretts und `create`.
+4. In `src/games/howto.ts` die Kurzanleitung ergänzen, zuerst das Ziel.
 
 ## Veröffentlichen
 

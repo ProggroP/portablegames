@@ -37,6 +37,8 @@ export interface GameInstance {
   /** Das Spielbrett. Die Größe setzt der Spielbildschirm. */
   element: HTMLElement;
   destroy(): void;
+  /** Nur für Echtzeitspiele: anhalten, solange zum Beispiel die Anleitung offen ist. */
+  setPaused?(paused: boolean): void;
 }
 
 export interface GameDef {
@@ -52,6 +54,8 @@ export interface GameDef {
   aspectMax?: number;
   /** 9 Zeichen für das 3x3-Symbol: B, O, W oder _ */
   icon: string;
+  /** Kurzanleitung: zuerst das Ziel, dann die wichtigsten Regeln, je ein Satz oder zwei. */
+  howTo?: string[];
   /** Fehlt bei Spielen, die noch geplant sind. */
   create?: (host: HTMLElement, ctx: GameContext) => GameInstance;
 }

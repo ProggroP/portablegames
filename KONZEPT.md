@@ -40,12 +40,12 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Schach | | Hoch | Hoch | geplant, Figuren gegenüber zum jeweiligen Spieler gedreht |
 | Backgammon | | Quer | Quer | spielbar, ohne Verdopplungswürfel |
 | Mancala | Kalaha | Quer | Quer | spielbar |
-| Gomoku | | Hoch | Hoch | geplant, 13×13 oder Bestätigungs-Tipp |
+| Gomoku | | Hoch | Hoch | spielbar, 13×13 mit Bestätigungs-Tipp |
 | Käsekästchen | | Hoch | Hoch | spielbar, 5×5 Kästchen |
 | Air-Hockey | | Hoch | Quer | spielbar, Echtzeit mit Multitouch, auch allein gegen den Computer |
-| Paarweise | Memory | Hoch | Hoch | geplant, Motive ohne Oben und Unten |
+| Paarweise | Memory | Hoch | Hoch | spielbar, 12 Paare, Motive ohne Oben und Unten |
 | Fünf Würfel | Kniffel | Hoch | Hoch | geplant, gegenüber mit eigenem Block pro Spieler |
-| Fallreihe | Vier gewinnt | nicht möglich | Hoch | geplant |
+| Fallreihe | Vier gewinnt | nicht möglich | Hoch | spielbar |
 | Solitär | Klondike | | | geplant, nur allein |
 | Feldräumer | Minesweeper | | | geplant, nur allein |
 | Neunerfeld | Sudoku | | | geplant, nur allein |
@@ -71,6 +71,10 @@ Allgemeine Spielnamen (Schach, Mühle, Dame, Backgammon, Reversi, Mancala, Tic-T
 - **Kalaha / Kalah** war in den USA bis 2002 eine Marke. „Mancala“ ist der allgemeine Name der Spielfamilie.
 
 Auch Beschreibungstexte in der App nennen keine geschützten Namen. Das ist eine Einschätzung, keine Rechtsberatung.
+
+## Kurzanleitungen
+
+Jedes Spiel hat eine Kurzanleitung in `src/games/howto.ts`. Der erste Punkt nennt immer das Ziel. Sie steht aufklappbar im Spielaufbau und ist im Spiel über den Knopf „?“ erreichbar. Gegenüber lässt sie sich für den anderen Spieler umdrehen. Echtzeitspiele pausieren, solange sie offen ist.
 
 ## Gestaltung
 

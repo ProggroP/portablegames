@@ -105,10 +105,29 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   };
   const againButton = (): HTMLButtonElement =>
     h('button', { class: 'btn btn--primary hud__again', type: 'button', hidden: true, onclick: () => again() }, 'Nochmal');
-  const iconButton = (name: 'close' | 'restart' | 'swap', label: string, onclick: () => void): HTMLButtonElement =>
+  const iconButton = (name: 'close' | 'restart' | 'swap' | 'help', label: string, onclick: () => void): HTMLButtonElement =>
     h('button', { class: 'icon-btn', type: 'button', 'aria-label': label, onclick }, icon(name, 20));
 
   const againButtons: HTMLButtonElement[] = [];
+
+  // Kurzanleitung als Fenster auf der Bühne. Gegenüber lässt es sich für den anderen Spieler umdrehen.
+  const rulesCard = h('div', { class: 'rules-card', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'rules-title' },
+    h('h2', { id: 'rules-title', class: 'subtitle' }, `${def.name}: So geht’s`),
+    h('ul', { class: 'howto__list' }, ...(def.howTo ?? []).map((line) => h('li', {}, line))),
+    h('div', { class: 'rules-card__actions' },
+      facing
+        ? h('button', { class: 'btn', type: 'button', onclick: () => rulesCard.classList.toggle('is-flipped') }, 'Für Gegenüber drehen')
+        : null,
+      h('button', { class: 'btn btn--primary', type: 'button', onclick: () => showRules(false) }, 'Weiter')
+    )
+  );
+  const rulesOverlay = h('div', { class: 'rules-overlay', hidden: true }, rulesCard);
+  function showRules(open: boolean, flipped = false): void {
+    rulesOverlay.hidden = !open;
+    rulesCard.classList.toggle('is-flipped', open && flipped);
+    game?.setPaused?.(open);
+    if (open) (rulesCard.querySelector('.btn--primary') as HTMLButtonElement | null)?.focus();
+  }
   const message = h('p', { class: 'play-message', 'aria-live': 'polite' });
 
   if (facing) {
@@ -116,8 +135,13 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     const top = againButton();
     const bottom = againButton();
     againButtons.push(top, bottom);
-    huds[1].actions.append(top);
-    huds[0].actions.append(bottom, iconButton('restart', 'Neues Spiel', restart), iconButton('close', 'Spiel beenden', exit));
+    huds[1].actions.append(top, iconButton('help', 'Kurzanleitung', () => showRules(true, true)));
+    huds[0].actions.append(
+      bottom,
+      iconButton('help', 'Kurzanleitung', () => showRules(true)),
+      iconButton('restart', 'Neues Spiel', restart),
+      iconButton('close', 'Spiel beenden', exit)
+    );
     stage.append(huds[1].el, boardWrap, huds[0].el);
   } else {
     const againBtn = againButton();
@@ -131,7 +155,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
       h('div', { class: 'play-bar' },
         iconButton('close', 'Spiel beenden', exit),
         h('span', { class: 'play-bar__title' }, def.name),
-        h('span', { class: 'play-bar__actions' }, flip, iconButton('restart', 'Neues Spiel', restart))
+        h('span', { class: 'play-bar__actions' }, iconButton('help', 'Kurzanleitung', () => showRules(true)), flip, iconButton('restart', 'Neues Spiel', restart))
       ),
       h('div', { class: 'hud-row' }, huds[0].el, huds[1].el),
       boardWrap,
@@ -187,6 +211,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
   window.addEventListener('orientationchange', onChange);
   screen.orientation?.addEventListener?.('change', onChange);
 
+  stage.append(rulesOverlay);
   document.body.classList.add('is-playing');
   root.append(stage);
   keepAwake(true);

@@ -18,6 +18,7 @@ export function createAirHockey(_host: HTMLElement, ctx: GameContext): GameInsta
   let frame = 0;
   let last = 0;
   let over = false;
+  let paused = false;
 
   const canvas = h('canvas', { class: 'ah-canvas', 'aria-hidden': 'true' });
   const element = h('div', { class: 'ah', role: 'application', 'aria-label': 'Air-Hockey-Spielfeld. Schläger mit dem Finger in der eigenen Hälfte führen.' }, canvas);
@@ -175,6 +176,11 @@ export function createAirHockey(_host: HTMLElement, ctx: GameContext): GameInsta
     frame = requestAnimationFrame(tick);
     const dt = Math.min(0.05, (now - (last || now)) / 1000);
     last = now;
+    if (paused) {
+      last = now;
+      draw(now);
+      return;
+    }
     if (!over && now >= pausedUntil) {
       const aiTargets: [Vec, Vec] = [targets[0], targets[1]];
       const speeds: [number, number] = [Infinity, Infinity];
@@ -219,6 +225,10 @@ export function createAirHockey(_host: HTMLElement, ctx: GameContext): GameInsta
     destroy: () => {
       cancelAnimationFrame(frame);
       resize.disconnect();
+    },
+    setPaused: (p) => {
+      paused = p;
+      pointers.clear();
     }
   };
 }

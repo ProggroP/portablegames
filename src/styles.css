@@ -1123,3 +1123,258 @@ a.game-card:hover {
   display: block;
   touch-action: none;
 }
+
+/* Kurzanleitung */
+.howto {
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.howto__summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.howto[open] .howto__summary {
+  border-bottom: 1px solid var(--line);
+}
+.howto__list {
+  margin: 0;
+  padding: 12px 16px 14px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+.howto__list li::marker {
+  color: var(--muted);
+}
+.tip {
+  margin-top: 8px;
+}
+.rules-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgb(18 19 26 / 80%);
+}
+.rules-card {
+  width: min(100%, 460px);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 18px 16px 16px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+}
+.rules-card.is-flipped {
+  transform: rotate(180deg);
+}
+.rules-card .howto__list {
+  padding: 12px 0 16px 18px;
+}
+.rules-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.stage--facing .hud__actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Gomoku */
+.gm {
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  padding: 2%;
+  border-radius: 14px;
+  background: var(--surface);
+}
+.gm-cell {
+  position: relative;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.gm-cell:disabled {
+  cursor: default;
+}
+/* Linien durch die Mitte jedes Feldes, am Rand nur zur Brettseite hin */
+.gm-cell::before,
+.gm-cell::after {
+  content: '';
+  position: absolute;
+  background: var(--line-strong);
+}
+.gm-cell::before {
+  left: 0;
+  right: 0;
+  top: calc(50% - 0.5px);
+  height: 1px;
+}
+.gm-cell::after {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 0.5px);
+  width: 1px;
+}
+.gm-left::before {
+  left: 50%;
+}
+.gm-right::before {
+  right: 50%;
+}
+.gm-top::after {
+  top: 50%;
+}
+.gm-bottom::after {
+  bottom: 50%;
+}
+.gm-stone {
+  position: relative;
+  z-index: 1;
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 0 rgb(0 0 0 / 25%);
+}
+.gm-stone.is-ghost {
+  opacity: 0.45;
+  outline: 2px dashed var(--text);
+  outline-offset: 1px;
+}
+.gm-stone.is-last {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+.gm-stone.is-win {
+  outline: 3px solid var(--text);
+  outline-offset: 1px;
+}
+
+/* Fallreihe */
+.fr {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  padding: 6px;
+  border-radius: 16px;
+  background: #2a3a6b;
+}
+.fr-col {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+.fr-col:disabled {
+  cursor: default;
+}
+.fr-col:not(:disabled):hover,
+.fr-col:focus-visible {
+  background: color-mix(in srgb, var(--pc) 22%, transparent);
+}
+.fr-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg);
+}
+.fr-disc {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 25%);
+  animation: fr-drop 0.25s ease-in;
+}
+.fr-disc.is-last {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+.fr-disc.is-win {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+@keyframes fr-drop {
+  from {
+    transform: translateY(-120%);
+    opacity: 0.4;
+  }
+}
+
+/* Paarweise */
+.pw {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 8px;
+}
+.pw-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 12px;
+  border: 2px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.pw-card:disabled {
+  cursor: default;
+}
+.pw-card.is-open {
+  background: var(--surface-2);
+  transform: scale(1.03);
+}
+.pw-card.is-owned {
+  transform: none;
+  border-color: var(--oc);
+  background: color-mix(in srgb, var(--oc) 14%, var(--surface));
+}
+.pw-back {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  /* Streifen sehen auch um 180 Grad gedreht gleich aus und ähneln keinem Motiv */
+  background: repeating-linear-gradient(45deg, var(--surface) 0 7px, #262938 7px 14px);
+}
+.pw-face {
+  width: 64%;
+  height: 64%;
+  display: flex;
+}
+.pw-face svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fr-disc {
+    animation: none;
+  }
+  .pw-card {
+    transition: none;
+  }
+}

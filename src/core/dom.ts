@@ -33,6 +33,7 @@ const ICONS: Record<string, string> = {
   back: '<path d="M15 18l-6-6 6-6"/>',
   close: '<path d="M6 6l12 12"/><path d="M18 6L6 18"/>',
   restart: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.3"/><path d="M12 16.8v.1"/>',
   swap: '<path d="M7 20V4"/><path d="M3 8l4-4 4 4"/><path d="M17 4v16"/><path d="M13 16l4 4 4-4"/>'
 };
 
