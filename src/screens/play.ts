@@ -115,6 +115,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     h('button', { class: 'icon-btn', type: 'button', 'aria-label': label, onclick }, icon(name, 20));
 
   const againButtons: HTMLButtonElement[] = [];
+  const undoButton = h('button', { class: 'btn play-foot__undo', type: 'button', hidden: true, onclick: () => game?.undo?.() }, 'Zug zurück');
   // Am Spielende ersetzt „Nochmal“ den Neustart-Knopf, damit die Anzeige nicht überläuft.
   const restartFacing = iconButton('restart', 'Neues Spiel', restart);
   const compact = facing && !!def.compactHud;
@@ -169,7 +170,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
       // Ohne Gegner braucht es keine Spieleranzeige, Fortschritt und Zeit stehen in der Meldung.
       ...(soloOnly ? [] : [h('div', { class: 'hud-row' }, huds[0].el, huds[1].el)]),
       boardWrap,
-      h('div', { class: 'play-foot' }, message, againBtn)
+      h('div', { class: 'play-foot' }, message, h('div', { class: 'play-foot__actions' }, undoButton, againBtn))
     );
   }
 
@@ -181,6 +182,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     message.textContent = parts.filter(Boolean).join(' ');
     againButtons.forEach((b) => (b.hidden = !st.finished));
     restartFacing.hidden = !!st.finished;
+    undoButton.disabled = !st.canUndo;
   }
 
   function startGame(): void {
@@ -188,6 +190,7 @@ export function playScreen(root: HTMLElement, def: GameDef): () => void {
     boardWrap.replaceChildren();
     game = create!(boardWrap, { players, mode, level: cfg.level, starter, report });
     boardWrap.append(game.element);
+    undoButton.hidden = facing || !game.undo;
   }
 
   function again(): void {

@@ -27,6 +27,8 @@ export interface GameStatus {
    * label ersetzt bei Spielen für eine Person „Geschafft!“ oder „Verloren“, etwa „Spielende“.
    */
   finished?: { winner: PlayerIndex | null; label?: string };
+  /** Nur bei Spielen mit undo(): ob sich gerade ein Zug zurücknehmen lässt. */
+  canUndo?: boolean;
 }
 
 export interface GameContext {
@@ -43,6 +45,8 @@ export interface GameInstance {
   destroy(): void;
   /** Nur für Echtzeitspiele: anhalten, solange zum Beispiel die Anleitung offen ist. */
   setPaused?(paused: boolean): void;
+  /** Optional: den letzten eigenen Zug zurücknehmen. Der Spielbildschirm zeigt dann „Zug zurück“, außer gegenüber. */
+  undo?(): void;
 }
 
 export interface GameDef {

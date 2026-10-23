@@ -29,7 +29,8 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
   let targets: Move[] = [];
   let pendingPromotion: Move[] | null = null;
   let timer = 0;
-  const captured: [number, number] = [0, 0];
+  // Zurücknehmen nur allein gegen den Computer, zum Lernen
+  const canTakeBack = ctx.mode === 'allein';
 
   /** Feld an Position k der Anzeige (0 = oben links) */
   const squareAt = (k: number): Square => {
@@ -89,11 +90,21 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
     cells.forEach((c) => c.style.setProperty('--pc', ctx.players[turnPlayer()].color));
   }
 
+  /** Wert der geschlagenen Figuren je Spieler */
+  function capturedValues(): [number, number] {
+    const scores: [number, number] = [0, 0];
+    for (const m of game.history({ verbose: true })) if (m.captured) scores[playerOf(m.color)] += VALUE[m.captured];
+    return scores;
+  }
+
+  const humanMoved = (): boolean => game.history({ verbose: true }).some((m) => !ctx.players[playerOf(m.color)].isComputer);
+
   function report(): void {
-    const scores: [number, number] = [captured[0], captured[1]];
+    const scores = capturedValues();
+    const canUndo = canTakeBack && humanMoved();
     if (game.isCheckmate()) {
       const winner = (1 - turnPlayer()) as PlayerIndex;
-      ctx.report({ current: null, scores, finished: { winner }, message: 'Schachmatt.' });
+      ctx.report({ current: null, scores, finished: { winner }, message: 'Schachmatt.', canUndo });
       return;
     }
     if (game.isDraw() || game.isStalemate()) {
@@ -104,11 +115,11 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
           : game.isInsufficientMaterial()
             ? 'Zu wenig Material zum Mattsetzen.'
             : '50 Züge ohne Bauernzug oder Schlagen.';
-      ctx.report({ current: null, scores, finished: { winner: null }, message: why });
+      ctx.report({ current: null, scores, finished: { winner: null }, message: why, canUndo });
       return;
     }
     const hint = pendingPromotion ? 'Wähle die neue Figur.' : selected ? 'Tippe auf ein Zielfeld.' : 'Wähle eine Figur.';
-    ctx.report({ current: turnPlayer(), scores, message: game.inCheck() ? 'Schach!' : undefined, hint });
+    ctx.report({ current: turnPlayer(), scores, message: game.inCheck() ? 'Schach!' : undefined, hint, canUndo });
   }
 
   function update(): void {
@@ -117,9 +128,7 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
   }
 
   function play(move: { from: string; to: string; promotion?: string }): void {
-    const mover = turnPlayer();
-    const done = game.move(move);
-    if (done.captured) captured[mover] += VALUE[done.captured];
+    game.move(move);
     selected = null;
     targets = [];
     pendingPromotion = null;
@@ -158,6 +167,21 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
     else play(options[0]);
   }
 
+  /** Nimmt Züge zurück, bis der letzte eigene Zug weg ist. Die Antwort des Computers verschwindet dabei mit. */
+  function undo(): void {
+    if (!canTakeBack || !humanMoved()) return;
+    window.clearTimeout(timer);
+    for (let m = game.undo(); m; m = game.undo()) {
+      if (!ctx.players[playerOf(m.color)].isComputer) break;
+    }
+    selected = null;
+    targets = [];
+    pendingPromotion = null;
+    promoBox.hidden = true;
+    update();
+    scheduleComputer();
+  }
+
   function scheduleComputer(): void {
     if (game.isGameOver() || !ctx.players[turnPlayer()].isComputer) return;
     // Kurz warten, damit „Denkt nach …“ angezeigt wird, bevor die Suche den Rechner beschäftigt
@@ -170,5 +194,5 @@ export function createSchach(_host: HTMLElement, ctx: GameContext): GameInstance
   update();
   scheduleComputer();
 
-  return { element, destroy: () => window.clearTimeout(timer) };
+  return { element, destroy: () => window.clearTimeout(timer), undo: canTakeBack ? undo : undefined };
 }

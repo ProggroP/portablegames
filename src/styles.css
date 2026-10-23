@@ -522,6 +522,14 @@ a.game-card:hover {
   padding: 0 16px 12px;
   text-align: center;
 }
+.play-foot__actions {
+  display: flex;
+  gap: 10px;
+}
+.play-foot__undo:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 .play-message {
   min-height: 20px;
   color: var(--text-2);

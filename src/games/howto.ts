@@ -107,6 +107,7 @@ export const HOW_TO: Record<string, string[]> = {
     'Rochade, en passant und Bauernumwandlung werden angeboten, sobald sie erlaubt sind. Bei der Umwandlung wählst du die neue Figur.',
     'Unentschieden: Patt, dreimal dieselbe Stellung, zu wenig Material oder 50 Züge ohne Bauernzug und ohne Schlagen.',
     'Die Zahl neben deinem Namen ist der Wert der Figuren, die du geschlagen hast (Bauer 1, Springer und Läufer 3, Turm 5, Dame 9).',
+    'Allein gegen den Computer nimmst du mit „Zug zurück“ deinen letzten Zug zurück, auch nach einem Matt. So kannst du es gleich anders versuchen.',
     'Zum Lernen: „Anfänger“ schaut nur auf den eigenen Zug und übersieht oft, dass eine Figur gedeckt ist. „Einsteiger“ denkt einen Gegenzug voraus. Ab „Leicht“ rechnet der Computer jeden Schlagabtausch zu Ende.'
   ],
   kloetzchen: [
