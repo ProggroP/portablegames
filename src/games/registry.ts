@@ -47,7 +47,7 @@ export const GAMES: GameDef[] = [
   { id: 'feldraeumer', name: 'Feldräumer', kind: 'Minen umgehen', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.85, icon: '_W_WOW_W_', create: createFeldraeumer },
   { id: 'neunerfeld', name: 'Neunerfeld', kind: 'Zahlenrätsel 9 × 9', seating: { allein: 'portrait' }, aspect: 0.68, aspectMax: 0.82, icon: 'W_W_B_W_W', create: createNeunerfeld },
   { id: 'solitaer', name: 'Solitär', kind: 'Karten-Patience', seating: { allein: 'portrait' }, aspect: 0.55, aspectMax: 0.78, icon: 'WOWW_WOWO', create: createSolitaer },
-  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, icon: '_W_BWBBBB', create: createSchach },
+  { id: 'schach', name: 'Schach', kind: 'Den König mattsetzen', seating: BOTH_PORTRAIT, aspect: 1, levels: ['Anfänger', 'Einsteiger', 'Leicht', 'Mittel', 'Schwer'], icon: '_W_BWBBBB', create: createSchach },
   { id: 'kloetzchen', name: 'Klötzchen', kind: 'Reihen füllen, in deinem Tempo', seating: { allein: 'portrait' }, aspect: 0.6, aspectMax: 0.8, icon: 'O__OB_BBB', create: createKloetzchen },
   { id: 'ausparken', name: 'Ausparken', kind: 'Autos verschieben, rausfahren', seating: { allein: 'portrait' }, aspect: 0.72, aspectMax: 0.9, icon: 'O_W_BB_W_', create: createAusparken }
 ];

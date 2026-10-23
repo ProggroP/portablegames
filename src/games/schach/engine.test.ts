@@ -47,18 +47,18 @@ describe('Schach-Engine: Computer', () => {
   it('findet ein Matt in einem Zug', () => {
     // Weiß: Dame h5, Läufer c4. Matt mit Dxf7.
     const fen = 'r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4';
-    for (const level of [1, 2] as const) expect(computerMove(fen, level, seeded(1))).toEqual({ from: 'h5', to: 'f7', promotion: undefined });
+    for (const level of [0, 1, 2, 3, 4]) expect(computerMove(fen, level, seeded(1))).toEqual({ from: 'h5', to: 'f7', promotion: undefined });
   });
 
   it('schlägt eine ungedeckte Dame', () => {
     const fen = 'rnb1kbnr/pppp1ppp/8/4p1q1/3P4/2N5/PPP1PPPP/R1BQKBNR w KQkq - 0 3';
     // Lc1 schlägt die Dame auf g5
-    expect(computerMove(fen, 2, seeded(2))).toMatchObject({ from: 'c1', to: 'g5' });
+    expect(computerMove(fen, 4, seeded(2))).toMatchObject({ from: 'c1', to: 'g5' });
   });
 
   it('wandelt einen Bauern in eine Dame um', () => {
     const fen = '8/P6k/8/8/8/8/8/K7 w - - 0 1';
-    expect(computerMove(fen, 2, seeded(3))).toEqual({ from: 'a7', to: 'a8', promotion: 'q' });
+    expect(computerMove(fen, 4, seeded(3))).toEqual({ from: 'a7', to: 'a8', promotion: 'q' });
   });
 
   it('spielt auf allen Stufen nur legale Züge, auch eine ganze Partie lang', () => {
@@ -66,16 +66,51 @@ describe('Schach-Engine: Computer', () => {
     const rng = seeded(9);
     let plies = 0;
     while (!game.isGameOver() && plies < 60) {
-      const level = (plies % 3) as 0 | 1 | 2;
-      const m = computerMove(game.fen(), level === 2 ? 1 : level, rng)!;
+      const m = computerMove(game.fen(), plies % 4, rng)!;
       expect(() => game.move(m)).not.toThrow();
       plies++;
     }
   }, 60000);
 
+  it('Anfänger nimmt mit der Dame einen gedeckten Bauern, Leicht nicht', () => {
+    // Die weiße Dame kann über die offene d-Linie d7 schlagen, der Bauer ist mehrfach gedeckt
+    const fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPP1PPPP/RNBQKBNR w KQkq - 0 1';
+    const takes = (level: number): number => {
+      let n = 0;
+      for (let seed = 1; seed <= 20; seed++) {
+        const m = computerMove(fen, level, seeded(seed * 104729))!;
+        if (m.from === 'd1' && m.to === 'd7') n++;
+      }
+      return n;
+    };
+    expect(takes(0)).toBeGreaterThan(0);
+    expect(takes(2)).toBe(0);
+  });
+
+  it('die Stufen sind der Reihe nach stärker', () => {
+    // Kurze Turniere: Anfänger gegen Einsteiger, Einsteiger gegen Leicht
+    const score = (weak: number, strong: number): number => {
+      const rng = seeded(weak * 10 + strong);
+      let points = 0;
+      for (let i = 0; i < 8; i++) {
+        const game = new Chess();
+        const strongWhite = i % 2 === 0;
+        while (!game.isGameOver() && game.history().length < 200) {
+          const strongToMove = (game.turn() === 'w') === strongWhite;
+          game.move(computerMove(game.fen(), strongToMove ? strong : weak, rng)!);
+        }
+        if (game.isCheckmate()) points += (game.turn() === 'w') !== strongWhite ? 1 : 0;
+        else points += 0.5;
+      }
+      return points;
+    };
+    expect(score(0, 1)).toBeGreaterThanOrEqual(6);
+    expect(score(1, 2)).toBeGreaterThanOrEqual(5);
+  }, 60000);
+
   it('antwortet auf Schwer in vertretbarer Zeit', () => {
     const t = performance.now();
-    computerMove('r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3', 2, seeded(4));
+    computerMove('r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3', 4, seeded(4));
     expect(performance.now() - t).toBeLessThan(4000);
   });
 });

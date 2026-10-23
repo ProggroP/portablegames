@@ -37,7 +37,7 @@ Faustregel: Quadratische Bretter im Hochformat. Bretter, bei denen jeder Spieler
 | Reversi | | Hoch | Hoch | spielbar |
 | Mühle | | Hoch | Hoch | spielbar |
 | Dame | | Hoch | Hoch | spielbar |
-| Schach | | Hoch | Hoch | spielbar, Figuren gegenüber zum jeweiligen Spieler gedreht |
+| Schach | | Hoch | Hoch | spielbar, Figuren gegenüber zum jeweiligen Spieler gedreht, fünf Computerstufen von Anfänger bis Schwer |
 | Backgammon | | Quer | Quer | spielbar, ohne Verdopplungswürfel |
 | Mancala | Kalaha | Quer | Quer | spielbar |
 | Gomoku | | Hoch | Hoch | spielbar, 13×13 mit Bestätigungs-Tipp |

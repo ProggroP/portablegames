@@ -1,4 +1,4 @@
-import { loadConfig, saveConfig, type GameConfig } from '../core/config';
+import { levelNames, loadConfig, saveConfig, type GameConfig } from '../core/config';
 import { h, icon } from '../core/dom';
 import { PLAYER_COLOR_NAMES } from '../core/players';
 import type { GameDef, Level, Orientation, SeatMode } from '../core/types';
@@ -14,16 +14,11 @@ const SEAT_TEXT: Record<Exclude<SeatMode, 'allein'>, { label: string; desc: stri
   }
 };
 
-const LEVELS: [Level, string][] = [
-  [0, 'Leicht'],
-  [1, 'Mittel'],
-  [2, 'Schwer']
-];
-
 const FORMAT_TEXT: Record<Orientation, string> = { portrait: 'Hochformat', landscape: 'Querformat' };
 
 function segmented<T>(label: string, options: [T, string][], value: T, onPick: (v: T) => void): HTMLElement {
-  return h('div', { class: 'seg', role: 'group', 'aria-label': label },
+  // Mehr als drei Knöpfe passen auf kleinen Handys nicht in eine Zeile
+  return h('div', { class: options.length > 3 ? 'seg seg--wrap' : 'seg', role: 'group', 'aria-label': label },
     ...options.map(([v, text]) =>
       h('button', { class: 'seg__btn', type: 'button', 'aria-pressed': String(v === value), onclick: () => onPick(v) }, text)
     )
@@ -110,7 +105,7 @@ export function setupScreen(root: HTMLElement, def: GameDef): void {
       sections.push(
         h('section', { class: 'section' },
           h('h2', { class: 'label' }, duoModes.length ? 'Computer' : 'Schwierigkeit'),
-          segmented('Schwierigkeit', LEVELS, cfg.level, (l) => {
+          segmented('Schwierigkeit', levelNames(def).map((name, i) => [i, name] as [Level, string]), cfg.level, (l) => {
             cfg.level = l;
             render();
           })

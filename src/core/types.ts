@@ -5,7 +5,8 @@ export type SeatMode = 'gegenueber' | 'nebeneinander' | 'allein';
 
 export type PlayerIndex = 0 | 1;
 
-export type Level = 0 | 1 | 2;
+/** Schwierigkeit, 0 ist die leichteste. Die meisten Spiele haben drei Stufen, siehe GameDef.levels. */
+export type Level = number;
 
 export interface Player {
   name: string;
@@ -57,6 +58,8 @@ export interface GameDef {
   aspectMax?: number;
   /** Gegenüber schmale Spieleranzeigen in einer Zeile, wenn das Brett viel Höhe braucht. */
   compactHud?: boolean;
+  /** Namen der Schwierigkeitsstufen, falls es nicht Leicht, Mittel und Schwer sind. */
+  levels?: string[];
   /** 9 Zeichen für das 3x3-Symbol: B, O, W oder _ */
   icon: string;
   /** Kurzanleitung: zuerst das Ziel, dann die wichtigsten Regeln, je ein Satz oder zwei. */

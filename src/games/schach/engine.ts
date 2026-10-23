@@ -327,6 +327,8 @@ export interface EngineOptions {
   minDepth: number;
   /** Zufällige Abweichung in Centipawns pro Zug an der Wurzel, macht leichtere Stufen schwächer */
   noise: number;
+  /** false: am Suchende nur bewerten, ohne Schlagabtausch zu Ende zu rechnen. Übersieht dann Rückschläge wie ein Anfänger. */
+  quiesce?: boolean;
   rng: () => number;
 }
 
@@ -358,9 +360,11 @@ export function search(p: Position, opts: EngineOptions): { move: EMove | null; 
     if (p.halfmove >= 100) return 0;
     const check = p.inCheck();
     // Wer im Schach steht, wird nicht in die Ruhesuche geschickt, sonst übersieht die Suche Matt
-    if (depth <= 0 && !check) return quiesce(alpha, beta);
+    if (depth <= 0 && !check) return opts.quiesce === false ? evaluate(p) : quiesce(alpha, beta);
     const moves = p.legalMoves();
     if (!moves.length) return check ? -MATE + ply : 0;
+    // Ohne Ruhesuche wird im Schach nur Matt erkannt, nicht weitergerechnet
+    if (depth <= 0 && opts.quiesce === false) return evaluate(p);
     moves.sort((a, b) => orderScore(b) - orderScore(a));
     for (const m of moves) {
       p.make(m);
@@ -407,11 +411,14 @@ export function search(p: Position, opts: EngineOptions): { move: EMove | null; 
   return { move: best, depth: reached, score: bestScore };
 }
 
-const LEVEL_OPTIONS: Record<Level, Omit<EngineOptions, 'rng'>> = {
-  0: { timeMs: 150, maxDepth: 1, minDepth: 1, noise: 120 },
-  1: { timeMs: 500, maxDepth: 4, minDepth: 2, noise: 25 },
-  2: { timeMs: 1200, maxDepth: 12, minDepth: 3, noise: 0 }
-};
+/** Stufen von Anfänger bis Schwer, Reihenfolge wie `levels` beim Schach in registry.ts */
+const LEVEL_OPTIONS: Omit<EngineOptions, 'rng'>[] = [
+  { timeMs: 100, maxDepth: 1, minDepth: 1, noise: 300, quiesce: false },
+  { timeMs: 100, maxDepth: 2, minDepth: 2, noise: 150, quiesce: false },
+  { timeMs: 150, maxDepth: 1, minDepth: 1, noise: 120 },
+  { timeMs: 500, maxDepth: 4, minDepth: 2, noise: 25 },
+  { timeMs: 1200, maxDepth: 12, minDepth: 3, noise: 0 }
+];
 
 /** Zug des Computers für eine Stellung in FEN, als Felder in algebraischer Schreibweise. */
 export function computerMove(

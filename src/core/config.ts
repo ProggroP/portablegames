@@ -15,12 +15,21 @@ export function defaultMode(def: GameDef): SeatMode {
   return 'allein';
 }
 
+export const DEFAULT_LEVELS = ['Leicht', 'Mittel', 'Schwer'];
+
+export function levelNames(def: GameDef): string[] {
+  return def.levels ?? DEFAULT_LEVELS;
+}
+
 export function loadConfig(def: GameDef): GameConfig {
   const names = load<{ names: [string, string] }>('names', { names: ['', ''] }).names;
-  const cfg = load<Omit<GameConfig, 'names'>>('game:' + def.id, { mode: defaultMode(def), level: 1, flipped: false });
-  // Eine gespeicherte Sitzordnung, die das Spiel nicht (mehr) kann, wird ersetzt.
+  const count = levelNames(def).length;
+  const middle = Math.floor(count / 2);
+  const cfg = load<Omit<GameConfig, 'names'>>('game:' + def.id, { mode: defaultMode(def), level: middle, flipped: false });
+  // Eine gespeicherte Sitzordnung oder Stufe, die das Spiel nicht (mehr) kann, wird ersetzt.
   const mode = def.seating[cfg.mode] ? cfg.mode : defaultMode(def);
-  return { ...cfg, mode, names };
+  const level = Number.isInteger(cfg.level) && cfg.level >= 0 && cfg.level < count ? cfg.level : middle;
+  return { ...cfg, mode, level, names };
 }
 
 export function saveConfig(def: GameDef, cfg: GameConfig): void {
